@@ -3,7 +3,7 @@
 - Canonical tree: this repo. Deploy `public/` with `deploy.ps1` (runs shed_check first; no secrets).
 - Product is a puzzle school. Do not paste plaintext answers into `public/`.
 - `scripts/_secret_manifest.json` is local spoilers. Do not commit.
-- EN only (i18n pause). ASCII dashes in public copy.
+- EN only (i18n pause). ASCII dashes in public copy. After a new HTML page: `python3 scripts/en_check.py`.
 - After visual/copy change: OG `?v=` bump, `python3 scripts/ensure_tweet_card.py`, hits slug `instar`.
 - Public GitHub: MIT, one commit, Pitchfork-and-Torch author, secret scan first.
 - Page-cook map: `scripts/COOK.md`. Before a page or lab PR: `python3 scripts/shed_check.py`.
