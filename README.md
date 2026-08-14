@@ -60,7 +60,7 @@ Shed check (public-safe school gate, no secret journal). Run before a chamber or
 python3 scripts/shed_check.py
 ```
 
-The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, the cook map, and the PWA manifest check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, the cook map, the PWA manifest check, and the EN-only check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
 
 Page-cook map (when to run which gate):
 
@@ -125,6 +125,14 @@ python3 scripts/manifest_check.py
 ```
 
 The manifest check fails if `start_url` is not hello, `lang` is not `en`, an icon is missing on disk, a public door lost the manifest link, or `PRECACHE` dropped `/manifest.webmanifest`. It does not fetch and does not name a molt answer.
+
+EN only (after a new HTML page; i18n is paused):
+
+```
+python3 scripts/en_check.py
+```
+
+The EN check fails if a public HTML page is missing `lang="en"`, `hreflang` or `og:locale:alternate` appears, hello lost `og:locale` `en_US`, or a locale / i18n directory landed under `public/`. It does not translate and does not name a molt answer.
 
 ## Deploy
 
