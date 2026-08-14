@@ -1,6 +1,6 @@
 # INSTAR folder rules
 
-- Canonical tree: this repo. Deploy `public/` with `deploy.ps1`.
+- Canonical tree: this repo. Deploy `public/` with `deploy.ps1` (runs shed_check first; no secrets).
 - Product is a puzzle school. Do not paste plaintext answers into `public/`.
 - `scripts/_secret_manifest.json` is local spoilers. Do not commit.
 - EN only (i18n pause). ASCII dashes in public copy.

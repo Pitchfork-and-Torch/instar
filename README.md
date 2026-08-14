@@ -84,6 +84,8 @@ The precache check fails if `KILL` is true, a listed path is missing on disk, or
 powershell -ExecutionPolicy Bypass -File deploy.ps1
 ```
 
+`deploy.ps1` runs `scripts/shed_check.py` first (python3 or `py -3`). A failed shed check does not deploy. The gate does not open the secret journal.
+
 Cloudflare Pages project `instar-jonbailey`. Custom host `instar.jonbailey.xyz`.
 
 ## License
