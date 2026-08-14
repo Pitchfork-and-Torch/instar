@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Husk - INSTAR</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Page 56 lab: read a 512-bit dump as a payload. No preimage search.">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to husk</a>
+  <header class="top" id="top"></header>
+  <main class="wrap chamber" id="main">
+    <section>
+      <p class="kicker">After VII · Husk</p>
+      <h1 class="stage">A hash can be a payload.</h1>
+      <p class="lede">Liber Primus page 56 (2014) printed a 512-bit hex dump and said a deep-web page hashes to it. The preimage is still unsolved. GPU-thrashing SHA-512, BLAKE, or Whirlpool is not the work. This chamber teaches the published reading, the paths already closed, and one experiment that still has a finite edge.</p>
+      <p class="note">INSTAR does not claim a break. The extract below is a public reading of the printed lineation. Tor v2 died in October 2021. A dead address is not a living door.</p>
+      <div class="row">
+        <button type="button" id="run">Run the published extract</button>
+      </div>
+      <pre class="cipher lab" id="out">The five printed lines are on the right. Run the extract here, or from the repo:
+
+python3 scripts/page56_lab.py</pre>
+      <article class="brief">
+        <h2>Ruled out</h2>
+        <ul class="rules">
+          <li><strong>Preimage search.</strong> A 512-bit digest is not a classroom lock. Do not invent a SHA-512, BLAKE, or Whirlpool preimage. That work is closed.</li>
+          <li><strong>CP1252 paste.</strong> The same 64 bytes. Byte 37 is 0x0B (vertical tab). A Windows-1252 paste turns that byte into a blank line. Nothing new is hiding in the code page.</li>
+          <li><strong>SHA3-512.</strong> FIPS 202 is 2015-08-05. Liber Primus is 2014. Anachronism. Not a candidate for the original commitment.</li>
+          <li><strong>Other wraps.</strong> Eight lines of 16, or four of 32, do not yield the published v2 host. The uneven five-line wrap is load-bearing.</li>
+          <li><strong>Locator templates.</strong> Magnet (160-bit infohash width), IPFS, Freenet, and I2P URLs have been formatted from this dump. None resolve to known content. Widths besides the magnet template do not even match those systems.</li>
+        </ul>
+        <h2>Bounded next</h2>
+        <p>The leftover 352 bits are AES-256-GCM-shaped: a 256-bit key and a 96-bit nonce. There is no ciphertext or tag on the page. That layout is unverified.</p>
+        <p>If you already hold a published candidate blob - another public hex dump, an archived 2014 payload - offer it as ciphertext plus tag:</p>
+        <pre class="cipher lab">python3 scripts/page56_lab.py --gcm path/to/blob</pre>
+        <p>Auth-fail is the expected result. Do not invent a blob. Do not fetch live hidden services. Do not treat this school as a recruiter.</p>
+        <p><a href="/brood/">Back to brood</a> · <a href="/manual/">Field manual</a> · <a href="/workbench/#hash">Hash bench</a></p>
+      </article>
+    </section>
+    <aside>
+      <p class="note">Published lineation. First eight hex characters of each line are the extract.</p>
+      <pre class="cipher lab" id="wrap"></pre>
+      <p class="note">Five lines. 128 hex characters. Not a solution engine.</p>
+    </aside>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/core.js"></script>
+  <script src="/js/page56.js"></script>
+  <script>
+    INSTAR.mountChrome("husk");
+    INSTAR.mountFoot();
+    INSTAR.mark("husk");
+    var P = INSTAR_PAGE56;
+    document.getElementById("wrap").textContent = P.LINES.join("\n");
+    document.getElementById("run").addEventListener("click", function () {
+      var r = P.report();
+      var onionOk = r.onionHost === P.ONION_V2;
+      var alt8 = P.onionFromExtract(r.wrap8x16);
+      document.getElementById("out").textContent = [
+        "extract  " + r.extract,
+        "bits     160",
+        "v2 host  " + r.onionHost,
+        "match    " + (onionOk ? "published host" : "MISMATCH"),
+        "status   dead since 2021-10 (Tor removed v2)",
+        "",
+        "leftover 352 bits",
+        "key      " + r.gcmKey,
+        "nonce    " + r.gcmNonce,
+        "shape    AES-256-GCM key||nonce, unverified",
+        "",
+        "8x16 host " + alt8 + " (ruled out)",
+        "4x32 bits " + (r.wrap4x32.length * 4) + " (not an onion)",
+        "0x0B at   byte " + r.vtIndex,
+        "",
+        "Next: python3 scripts/page56_lab.py"
+      ].join("\n");
+    });
+  </script>
+  <script defer src="https://hits.jonbailey.xyz/c.js" data-site="instar"></script>
+</body>
+</html>

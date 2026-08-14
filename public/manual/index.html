@@ -93,6 +93,15 @@
         <p><a href="/workbench/#hash">Open the hash bench</a> if you want to see how this school locks a guess without storing it.</p>
       </details>
     </article>
+    <article data-need="emerge">
+      <h2>VIII · Page 56, read as a payload</h2>
+      <p>Liber Primus page 56 printed a 512-bit hex dump and called it a hash of a deep-web page. The preimage is still unsolved. Do not invent a SHA-512, BLAKE, or Whirlpool inversion. The published work is a reading: first eight hex characters of each printed line, 160 bits, a v2 onion that died with Tor v2 in 2021-10. The leftover 352 bits are AES-256-GCM-shaped and unverified.</p>
+      <details class="dig">
+        <summary>Dig deeper</summary>
+        <p>A digest can be a lock (find a preimage) or a payload (read the bits as published). Page 56 still has no known preimage. The five-line wrap is load-bearing: 8x16 and 4x32 wraps do not yield the published host. SHA3-512 is an anachronism (FIPS 202 is 2015). Magnet, IPFS, Freenet, and I2P templates have been formatted; none resolve to known content. The next finite experiment is a local AES-256-GCM open of leftover-as-key-and-nonce against a blob you already hold - not a blob you invent, and not a live hidden service.</p>
+        <p><a href="/husk/">Open the husk lab</a></p>
+      </details>
+    </article>
   </main>
   <footer class="foot" id="foot"></footer>
   <script src="/js/core.js"></script>

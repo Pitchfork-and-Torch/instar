@@ -18,12 +18,13 @@ const ctx = {
 };
 ctx.window = ctx;
 vm.createContext(ctx);
-["ciphers.js", "runes.js", "rsa.js"].forEach(function (f) {
+["ciphers.js", "runes.js", "rsa.js", "page56.js"].forEach(function (f) {
   vm.runInContext(fs.readFileSync(path.join(root, f), "utf8"), ctx);
 });
 const C = ctx.window.INSTAR_CIPHERS;
 const R = ctx.window.INSTAR_RUNES;
 const A = ctx.window.INSTAR_RSA;
+const P = ctx.window.INSTAR_PAGE56;
 const fails = [];
 function ok(name, cond) {
   if (!cond) fails.push(name);
@@ -36,6 +37,13 @@ ok("book", C.book("alpha\nbeta gamma\n", "2:2") === "gamma");
 ok("freq", C.freq("AAAABB")[0][0] === "A");
 ok("rune-round", R.decode(R.encode("EMERGE")) === "EMERGE");
 ok("rsa-fac", JSON.stringify(A.factor(3139)) === "[43,73]");
+ok("p56-join", P.LINES.join("") === P.HEX);
+ok("p56-extract", P.first8(P.LINES) === "3636776359466b4cd4618dee464fdaf14568926a");
+ok("p56-onion", P.onionFromExtract(P.first8(P.LINES)) === P.ONION_V2);
+ok("p56-left", P.after8(P.LINES).length === 88);
+ok("p56-vt", P.hexBytes(P.HEX)[37] === 0x0b);
+ok("p56-wrap8", P.onionFromExtract(P.first8(P.chunks(P.HEX, 16))) !== P.ONION_V2);
+ok("p56-wrap4", P.first8(P.chunks(P.HEX, 32)).length === 32);
 if (fails.length) {
   console.error("FAIL", fails.join(","));
   process.exit(1);
