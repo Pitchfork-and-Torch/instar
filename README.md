@@ -60,7 +60,7 @@ Shed check (public-safe school gate, no secret journal). Run before a chamber or
 python3 scripts/shed_check.py
 ```
 
-The shed check runs the cook guard, the page 56 lab, the unit lab, and Ensure-TweetCard, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, and the PWA precache check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
 
 Ensure-TweetCard (after a visual or copy change; does not bump `?v=`):
 
@@ -69,6 +69,14 @@ python3 scripts/ensure_tweet_card.py
 ```
 
 The card check fails if `public/og.jpg` is missing, `og:image` / `twitter:image` / JSON-LD disagree on `?v=`, `llms.txt` Version drifted, or the hello hits slug is not `instar`. Cooks still bump `?v=` on purpose when the picture or hello copy changes.
+
+PWA precache (after a new chamber; bump `CACHE` in `public/sw.js`):
+
+```
+python3 scripts/precache_check.py
+```
+
+The precache check fails if `KILL` is true, a listed path is missing on disk, or a public chamber is missing from `PRECACHE`. It does not fetch and does not name a molt answer.
 
 ## Deploy
 
