@@ -60,7 +60,7 @@ Shed check (public-safe school gate, no secret journal). Run before a chamber or
 python3 scripts/shed_check.py
 ```
 
-The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, and the search-listing check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, and the page-lab contract, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
 
 Ensure-TweetCard (after a visual or copy change; does not bump `?v=`):
 
@@ -93,6 +93,14 @@ python3 scripts/listing_check.py
 ```
 
 The listing check fails if a public door (hello, workbench, manual) is noindex, a molt chamber is missing noindex, `sitemap.xml` lists a chamber or drops a door, or `robots.txt` hides the school.
+
+Page-lab contract (when adding `scripts/page*_lab.py`):
+
+```
+python3 scripts/page_lab_contract.py
+```
+
+The contract fails if a page lab imports or calls a network client, never prints a `PAGE<n> OK` token, drops the no-preimage banner, or claims a Liber Primus break. Labs stay local. Do not fetch a hidden service.
 
 ## Deploy
 
