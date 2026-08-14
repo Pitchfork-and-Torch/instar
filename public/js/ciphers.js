@@ -10,7 +10,9 @@
     });
   }
   function caesar(s, n) {
-    n = ((Number(n) % 26) + 26) % 26;
+    n = Number(n);
+    if (!Number.isFinite(n)) n = 0;
+    n = ((n % 26) + 26) % 26;
     return lettersOnly(s).replace(/[A-Za-z]/g, (ch) => {
       const base = ch <= "Z" ? 65 : 97;
       return String.fromCharCode(base + ((ch.charCodeAt(0) - base + n) % 26));

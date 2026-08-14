@@ -84,7 +84,7 @@
     let out = src;
     if (mode === "atbash") out = C.atbash(src);
     else if (mode === "rot13") out = C.rot13(src);
-    else if (mode === "caesar-enc") out = C.caesar(src, key);
+    else if (mode === "caesar-enc") out = C.caesar(src, Number(key) || 0);
     else if (mode === "caesar-dec") out = C.caesar(src, -Number(key) || 0);
     else if (mode === "vig-enc") out = C.vigenere(src, key, false);
     else if (mode === "vig-dec") out = C.vigenere(src, key, true);

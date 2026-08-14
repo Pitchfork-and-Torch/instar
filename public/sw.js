@@ -1,6 +1,6 @@
 /* INSTAR service worker. Offline school. Kill switch at top. */
 const KILL = false;
-const CACHE = "instar-1.1.4";
+const CACHE = "instar-1.1.5";
 const PRECACHE = [
   "/",
   "/workbench/",

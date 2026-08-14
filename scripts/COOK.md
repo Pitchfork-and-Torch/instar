@@ -34,6 +34,8 @@ After a new `scripts/page*_lab.py`: local only, print `PAGE<n> OK`, no preimage 
 
 Anytime: `python3 scripts/cook_guard.py` and `node scripts/unit_lab.js`.
 
+Desk Playwright (`scripts/verify_lab.mjs`) is not in CI. It needs Edge. Caesar NaN-key and LSB miss (green bit 3 vs red LSB) live in `unit_lab.js` until the desk has Playwright.
+
 ## Deploy
 
 ```

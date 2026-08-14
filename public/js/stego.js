@@ -9,6 +9,24 @@
     }
     return new Uint8Array(out);
   }
+  function bitsFromRgba(data, channel, bit) {
+    channel = Math.max(0, Math.min(2, Number(channel) || 0));
+    bit = Math.max(0, Math.min(7, Number(bit) || 0));
+    const bits = [];
+    for (let i = 0; i < data.length; i += 4) {
+      bits.push((data[i + channel] >> bit) & 1);
+    }
+    return bits;
+  }
+  function utf8FromBits(bits) {
+    const bytes = bitsToBytes(bits);
+    const zero = bytes.indexOf(0);
+    const slice = zero >= 0 ? bytes.subarray(0, zero) : bytes.subarray(0, 4096);
+    return new TextDecoder("utf-8", { fatal: false }).decode(slice);
+  }
+  function extractPlane(data, channel, bit) {
+    return utf8FromBits(bitsFromRgba(data, channel, bit));
+  }
   async function lsbExtract(file) {
     const url = URL.createObjectURL(file);
     try {
@@ -21,12 +39,7 @@
       const ctx = c.getContext("2d", { willReadFrequently: true });
       ctx.drawImage(img, 0, 0);
       const data = ctx.getImageData(0, 0, c.width, c.height).data;
-      const bits = [];
-      for (let i = 0; i < data.length; i += 4) bits.push(data[i] & 1);
-      const bytes = bitsToBytes(bits);
-      const zero = bytes.indexOf(0);
-      const slice = zero >= 0 ? bytes.subarray(0, zero) : bytes.subarray(0, 4096);
-      return new TextDecoder("utf-8", { fatal: false }).decode(slice);
+      return extractPlane(data, 0, 0);
     } finally {
       URL.revokeObjectURL(url);
     }
@@ -75,5 +88,5 @@
       URL.revokeObjectURL(url);
     }
   }
-  window.INSTAR_STEGO = { lsbExtract, stringsDump, drawBitPlane };
+  window.INSTAR_STEGO = { lsbExtract, stringsDump, drawBitPlane, extractPlane };
 })();
