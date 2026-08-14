@@ -28,6 +28,8 @@ After `public/manifest.webmanifest` or install chrome on a public door: `python3
 
 After a new HTML page: keep `lang="en"`, no hreflang, then `python3 scripts/en_check.py`. EN only. i18n is paused.
 
+After a new public door or a canonical edit: keep the href on-host, then `python3 scripts/canon_check.py`.
+
 After a new `scripts/page*_lab.py`: local only, print `PAGE<n> OK`, no preimage hunt, no network client, then `python3 scripts/page_lab_contract.py`. The page 56 lab (`python3 scripts/page56_lab.py`) is the template.
 
 Anytime: `python3 scripts/cook_guard.py` and `node scripts/unit_lab.js`.

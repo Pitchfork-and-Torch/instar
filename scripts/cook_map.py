@@ -28,6 +28,7 @@ GATES = (
     "door_check.py",
     "manifest_check.py",
     "en_check.py",
+    "canon_check.py",
     "deploy.ps1",
 )
 
