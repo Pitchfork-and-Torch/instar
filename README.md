@@ -60,7 +60,7 @@ Shed check (public-safe school gate, no secret journal). Run before a chamber or
 python3 scripts/shed_check.py
 ```
 
-The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, and the cook map, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, the cook map, and the PWA manifest check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
 
 Page-cook map (when to run which gate):
 
@@ -117,6 +117,14 @@ python3 scripts/door_check.py
 ```
 
 The door check fails if the 404 rule is gone, a redirect target is off-host or an onion, or `404.html` is missing noindex. Not every door is a door.
+
+PWA manifest (after editing `public/manifest.webmanifest` or install chrome on a public door):
+
+```
+python3 scripts/manifest_check.py
+```
+
+The manifest check fails if `start_url` is not hello, `lang` is not `en`, an icon is missing on disk, a public door lost the manifest link, or `PRECACHE` dropped `/manifest.webmanifest`. It does not fetch and does not name a molt answer.
 
 ## Deploy
 
