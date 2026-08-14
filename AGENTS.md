@@ -9,3 +9,4 @@
 - Page-cook map: `scripts/COOK.md`. Before a page or lab PR: `python3 scripts/shed_check.py`.
 - New `scripts/page*_lab.py`: local only, `PAGE<n> OK`, no preimage hunt, `python3 scripts/page_lab_contract.py`.
 - After a new chamber: add it to `public/sw.js` `PRECACHE`, bump `CACHE`, keep it `noindex`, run `python3 scripts/precache_check.py` and `python3 scripts/listing_check.py`.
+- After `public/manifest.webmanifest` or install chrome: `python3 scripts/manifest_check.py`.

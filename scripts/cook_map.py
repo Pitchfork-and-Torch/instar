@@ -26,6 +26,7 @@ GATES = (
     "listing_check.py",
     "page_lab_contract.py",
     "door_check.py",
+    "manifest_check.py",
     "deploy.ps1",
 )
 
