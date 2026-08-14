@@ -60,7 +60,7 @@ Shed check (public-safe school gate, no secret journal). Run before a chamber or
 python3 scripts/shed_check.py
 ```
 
-The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, the cook map, the PWA manifest check, the EN-only check, the canonical-host check, and the llms.txt check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, the cook map, the PWA manifest check, the EN-only check, the canonical-host check, the llms.txt check, and the seal/icon check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
 
 Page-cook map (when to run which gate):
 
@@ -149,6 +149,14 @@ python3 scripts/llms_check.py
 ```
 
 The llms check fails if Version / Live / Workbench / Manual drift, a listed URL is off-host or an onion, or the not-a-hidden-service / unsolved banner is gone. It does not fetch and does not name a molt answer.
+
+Seal / icon (after a favicon or install-chrome edit):
+
+```
+python3 scripts/icon_check.py
+```
+
+The icon check fails if `public/media/seal.jpg` is missing, a public door lost `rel=icon` or `apple-touch-icon`, or the webmanifest icon src drifted. It does not fetch and does not name a molt answer.
 
 ## Deploy
 

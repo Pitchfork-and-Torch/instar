@@ -24,7 +24,7 @@ After `public/_headers`: `python3 scripts/headers_check.py`.
 
 After `public/_redirects` or `public/404.html`: `python3 scripts/door_check.py`.
 
-After `public/manifest.webmanifest` or install chrome on a public door: `python3 scripts/manifest_check.py`.
+After `public/manifest.webmanifest` or install chrome on a public door: `python3 scripts/manifest_check.py`. After a seal or favicon edit: `python3 scripts/icon_check.py`.
 
 After a new HTML page: keep `lang="en"`, no hreflang, then `python3 scripts/en_check.py`. EN only. i18n is paused.
 
