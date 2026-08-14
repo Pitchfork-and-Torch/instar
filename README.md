@@ -46,6 +46,14 @@ python3 scripts/page56_lab.py
 
 Field lesson: `/husk/`
 
+Page cook guard (no spoilers, no decipherment). Run before a new chamber or lab PR:
+
+```
+python3 scripts/cook_guard.py
+```
+
+The guard fails if a cook is about to commit the secret manifest, a new onion host, a credential shape, or a Liber Primus solve claim. The published dead page-56 v2 host stays allowlisted as a teaching artifact. Do not add a live hidden service. Do not claim a Cicada break.
+
 ## Deploy
 
 ```
