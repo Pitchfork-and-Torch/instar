@@ -60,7 +60,15 @@ Shed check (public-safe school gate, no secret journal). Run before a chamber or
 python3 scripts/shed_check.py
 ```
 
-The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, and the 404/redirects door check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, and the cook map, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+
+Page-cook map (when to run which gate):
+
+```
+python3 scripts/cook_map.py
+```
+
+See `scripts/COOK.md`. The map check fails if that file drops a live gate name, a no-onion rule, or the school-not-a-solve banner.
 
 Ensure-TweetCard (after a visual or copy change; does not bump `?v=`):
 
