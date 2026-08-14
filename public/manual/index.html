@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Field manual - INSTAR</title>
+  <meta name="description" content="Field manual for the cryptography Cicada 3301 actually used.">
+  <link rel="canonical" href="https://instar.jonbailey.xyz/manual/">
+  <meta name="theme-color" content="#080705">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to field notes</a>
+  <header class="top" id="top"></header>
+  <main class="wrap manual" id="main">
+    <p class="kicker">Manual</p>
+    <h1 class="stage">Field notes</h1>
+    <p class="lede">Chapters unlock as you molt. Locked text is not a spoiler wall. It is a reminder to go do the work. Open notes link the exact bench. They do not carry answers.</p>
+    <div class="progress" id="dots" aria-hidden="true"></div>
+
+    <article data-need="hello">
+      <h2>0 · Hello</h2>
+      <p>View source. Follow comments. Cicada's first JPEG was a surface. The interesting part was never the pixels you were meant to admire.</p>
+      <details class="dig">
+        <summary>Dig deeper</summary>
+        <p>A static file is still a file when nobody links it. Comments are a teaching channel, not a leak. If a page says almost nothing, the author is asking you to look beside it.</p>
+      </details>
+    </article>
+    <article data-need="nymph">
+      <h2>I · Classical ciphers</h2>
+      <p>Atbash, Caesar, ROT13, Vigenere, A1Z26. The 2012 thread used inversion then a Vigenere keyed by Tiberius Claudius Caesar (U for V). Frequency analysis still works on long Caesar. It fails on a short Vigenere. That is the lesson.</p>
+      <details class="dig">
+        <summary>Dig deeper</summary>
+        <p>Atbash is a mirror. Caesar is a rotation. Vigenere is a rotation that changes with each letter. When the key is an emperor's name, the history is the instrument. Watch the frequency bars on a long Caesar, then on a short Vigenere: the first still has a hill, the second looks flatter.</p>
+        <p><a href="/workbench/#classical">Open the classical bench</a></p>
+      </details>
+    </article>
+    <article data-need="soil">
+      <h2>II · Book ciphers</h2>
+      <p>Coordinates into a shared volume. Fetch the file. Count from 1. Strip punctuation after you land on the word. Cicada used scripture, poetry, and later their own rune book as the volume.</p>
+      <details class="dig">
+        <summary>Dig deeper</summary>
+        <p>The ciphertext has no entropy of its own. If you do not hold the same edition, the coordinates are noise. Line:word is kind. Page:word is historical. Always fetch. Never trust a paraphrase.</p>
+        <p><a href="/workbench/#book">Open the book bench</a></p>
+      </details>
+    </article>
+    <article data-need="tunnel">
+      <h2>III · Steganography</h2>
+      <p>OutGuess (1999) hides data in JPEG DCT coefficients with statistical cover. LSB in PNG is the classroom cousin: last bit of a channel, stop at 0x00. Always also run strings. A declared file format can have a tail.</p>
+      <details class="dig">
+        <summary>Dig deeper</summary>
+        <p>A bit-plane is that bit drawn as a picture. Bit 0 of red is where classroom messages like to live. Higher planes look like the original. Strings will catch a tail that LSB will not. Both habits belong in the same hour.</p>
+        <p><a href="/workbench/#stego">Open the LSB bench</a></p>
+      </details>
+    </article>
+    <article data-need="song">
+      <h2>IV · Spectrograms</h2>
+      <p>Time on X, frequency on Y, energy as brightness. Audacity, Sonic Visualiser, or a short-time FFT. Cicada wrote words in the heat of a WAV. Lyrics were a decoy if they existed at all.</p>
+      <details class="dig">
+        <summary>Dig deeper</summary>
+        <p>Larger FFT: finer pitch, worse time. Smaller hop: denser columns. If a letter is a smear, change the window. If it is a stack of tones, you are looking at a drawing, not a voice.</p>
+        <p><a href="/workbench/#spec">Open the spectrogram bench</a></p>
+      </details>
+    </article>
+    <article data-need="prime">
+      <h2>V · Primes and toy RSA</h2>
+      <p>n = p*q. e coprime to phi. d = e^-1 mod phi. c = m^e mod n. 3301 is prime; that was branding plus a filter. Real RSA is not factorable in a browser. This one is, so you can feel the inverse.</p>
+      <details class="dig">
+        <summary>Dig deeper</summary>
+        <p>The classroom path is: factor, invert, decrypt each block as an ASCII code point. Then forge a pair with two small primes so you see n and d born. Do not ship those primes. The lesson is the inverse, not the number.</p>
+        <p><a href="/workbench/#rsa">Open the RSA bench</a></p>
+      </details>
+    </article>
+    <article data-need="liber">
+      <h2>VI · Runes</h2>
+      <p>Liber Primus uses a custom gematria. INSTAR uses Anglo-Saxon futhorc sound values and an original line. Unsolved pages stay unsolved. Do not invent a translation and call it a break.</p>
+      <details class="dig">
+        <summary>Dig deeper</summary>
+        <p>A custom gematria assigns numbers to runes so addition becomes a checksum or a second cipher. Cicada's table is public; many pages of Liber Primus are not solved. The bench here is phonetic only. Honesty is the tradecraft.</p>
+        <p><a href="/workbench/#runes">Open the rune bench</a></p>
+      </details>
+    </article>
+    <article data-need="emerge">
+      <h2>VII · Onions, PGP, and the ending</h2>
+      <p>Cicada signed statements with PGP and published .onion URLs. A v3 onion is 56 characters of base32 plus .onion, derived from an ed25519 public key. PGP (or minisign, or signify) lets strangers check that a statement is still from the same key. INSTAR does not run a hidden service that pretends to hire you. If a stranger on the internet asks you to fly somewhere with a QR code, that is not this school.</p>
+      <p>You finished the public molts. There is still an unused door, if you treated the wing as a file and not only as a picture.</p>
+      <details class="dig">
+        <summary>Dig deeper</summary>
+        <p>Signatures are about continuity of a key, not virtue of a person. An onion is an address derived from a key, not a club. Sovereignty here means: verify, then decide. Do not follow a QR into a stranger's plan.</p>
+        <p><a href="/workbench/#hash">Open the hash bench</a> if you want to see how this school locks a guess without storing it.</p>
+      </details>
+    </article>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/core.js"></script>
+  <script>
+    INSTAR.mountChrome("manual");
+    INSTAR.mountFoot();
+    var st = INSTAR.load();
+    document.getElementById("dots").innerHTML = INSTAR.ORDER.map(function (id) {
+      return '<span class="dot' + (st[id] ? " on" : "") + '" title="' + id + '"></span>';
+    }).join("");
+    document.querySelectorAll("article[data-need]").forEach(function (el) {
+      var need = el.getAttribute("data-need");
+      if (!st[need]) el.classList.add("locked");
+    });
+  </script>
+  <script defer src="https://hits.jonbailey.xyz/c.js" data-site="instar"></script>
+</body>
+</html>

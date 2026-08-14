@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nymph - INSTAR</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+</head>
+<body>
+  <header class="top" id="top"></header>
+  <main class="wrap chamber">
+    <section>
+      <p class="kicker">Instar I · Nymph</p>
+      <h1 class="stage">The emperor still has a name.</h1>
+      <p class="lede">In January 2012 a JPEG on 4chan hid a Caesar-family inversion, then a Vigenere whose key was a Roman emperor. Same two moves. Different plaintext. This one is ours.</p>
+      <p class="note">Key, historically: the name they printed in the first thread. Latin U for V. No spaces.</p>
+      <div class="cipher" id="ct">...</div>
+      <form id="gate">
+        <label class="field" for="guess">What the nymph is called</label>
+        <input id="guess" name="guess" type="text" autocomplete="off" spellcheck="false" required>
+        <div class="row"><button type="submit">Molt</button></div>
+      </form>
+      <p class="note" id="status"></p>
+      <article class="brief" id="brief" hidden>
+        <h2>Tradecraft</h2>
+        <p>Atbash is a reciprocal monoalphabetic map (A&lt;-&gt;Z). ROT13 is Caesar 13. Vigenere is Caesar with a repeating key. Cicada used all three before anything fancy. The workbench will invert them for you, but you should feel the key in your hands first.</p>
+        <p><a href="/workbench/#classical">Open the classical bench</a></p>
+      </article>
+    </section>
+    <aside class="relic">
+      <img src="/media/seal.jpg" alt="The brood seal.">
+      <figcaption>The first thread called him Tiberius.</figcaption>
+    </aside>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/puzzle.js"></script>
+  <script src="/js/core.js"></script>
+  <script>
+    INSTAR.mountChrome("nymph");
+    INSTAR.mountFoot();
+    INSTAR.mark("hello");
+    document.getElementById("ct").textContent = INSTAR_PUZZLE.vigenereCipher;
+    INSTAR.bindGate({
+      form: "gate",
+      input: "guess",
+      status: "status",
+      brief: "brief",
+      hash: "nymph",
+      stage: "nymph",
+      next: "/soil/",
+      okText: "The soil opens."
+    });
+  </script>
+</body>
+</html>

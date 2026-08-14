@@ -1,0 +1,50 @@
+# INSTAR
+
+A school for the cryptography [Cicada 3301](https://en.wikipedia.org/wiki/Cicada_3301) actually used.
+
+Original seven-molt puzzle. Not affiliated. Not a recruiter. No identity collection.
+
+Live: https://instar.jonbailey.xyz/
+
+## What you practice
+
+- View-source and hidden static files
+- Atbash, then Vigenere (the 2012 emperor-key move, new plaintext)
+- Book cipher against a local journal
+- LSB steganography and a strings tail
+- Audio spectrograms
+- Classroom RSA (factor, invert, decrypt)
+- Futhorc sound values (not Liber Primus gematria)
+- A signed-statement / onion primer in the field manual
+
+## Play
+
+Open the live site. Begin at Hello. The first molt is not on the page you see.
+
+Workbench (always open): `/workbench/`
+
+v1.1 keeps the same hashed gates. The workbench is a living lab (live dual pane, frequency, bit-planes, STFT sliders, RSA steps). Depth marks molt without scores. Optional Guide names the next neighborhood, never the lock. Optional Skins shows shed depth as dots only, off by default, names stay unspoken. Optional Soil is a low tone, off by default. The school installs as a quiet PWA.
+
+## Local
+
+```
+npx --yes serve public
+```
+
+Rebuild puzzle payloads (spoilers live in the encoder):
+
+```
+py -3 scripts/build_payloads.py
+```
+
+## Deploy
+
+```
+powershell -ExecutionPolicy Bypass -File deploy.ps1
+```
+
+Cloudflare Pages project `instar-jonbailey`. Custom host `instar.jonbailey.xyz`.
+
+## License
+
+MIT. See `LICENSE`.

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Song - INSTAR</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+</head>
+<body>
+  <header class="top" id="top"></header>
+  <main class="wrap">
+    <p class="kicker">Instar IV · Song</p>
+    <h1 class="stage">Do not listen. Look.</h1>
+    <p class="lede">Cicada wrote in spectrograms: a message you only see when time is the X axis and frequency is the Y. The 2012 audio was not a riddle in lyrics. It was a picture in heat.</p>
+    <p class="note"><a href="/media/emergence.wav">/media/emergence.wav</a> &nbsp; Paint it here, or in Audacity / Sonic Visualiser.</p>
+    <audio controls src="/media/emergence.wav" style="width:100%; margin:16px 0;"></audio>
+    <div class="sliders">
+      <label>FFT
+        <select class="field-ctl" id="nfft">
+          <option value="512">512</option>
+          <option value="1024">1024</option>
+          <option value="2048" selected>2048</option>
+          <option value="4096">4096</option>
+        </select>
+      </label>
+      <label>Hop
+        <input id="hop" type="number" value="512" min="64" max="2048" step="64">
+      </label>
+      <label>Gain
+        <input id="gain" type="number" value="80" min="20" max="200" step="10">
+      </label>
+    </div>
+    <canvas class="spec" id="spec" aria-label="Spectrogram"></canvas>
+    <div class="row">
+      <button type="button" id="paint">Paint spectrogram</button>
+      <a class="btn" href="/workbench/#spec">Open the spectrogram bench</a>
+    </div>
+    <form id="gate" style="max-width:36rem; margin-top:22px;">
+      <label class="field" for="guess">What the heat says</label>
+      <input id="guess" name="guess" type="text" autocomplete="off" spellcheck="false" required>
+      <div class="row"><button type="submit">Molt</button></div>
+    </form>
+    <p class="note" id="status"></p>
+    <article class="brief" id="brief" hidden>
+      <h2>Tradecraft</h2>
+      <p>A spectrogram is a short-time Fourier transform. Dark-to-light is energy. Letters are drawn by placing energy in the bins that form strokes. 3301 is a prime. That is not poetry. It is the next lock.</p>
+    </article>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/puzzle.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/spec.js"></script>
+  <script>
+    INSTAR.mountChrome("song");
+    INSTAR.mountFoot();
+    INSTAR.mark("tunnel");
+    document.getElementById("paint").addEventListener("click", async function () {
+      const res = await fetch("/media/emergence.wav");
+      const blob = await res.blob();
+      await INSTAR_SPEC.drawFile(new File([blob], "emergence.wav"), document.getElementById("spec"), {
+        nfft: document.getElementById("nfft").value,
+        hop: document.getElementById("hop").value,
+        gain: document.getElementById("gain").value
+      });
+    });
+    INSTAR.bindGate({
+      form: "gate",
+      input: "guess",
+      status: "status",
+      brief: "brief",
+      hash: "song",
+      stage: "song",
+      next: "/prime/",
+      okText: "A prime year is a lock."
+    });
+  </script>
+</body>
+</html>

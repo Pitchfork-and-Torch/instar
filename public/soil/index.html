@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soil - INSTAR</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+</head>
+<body>
+  <header class="top" id="top"></header>
+  <main class="wrap chamber">
+    <section>
+      <p class="kicker">Instar II · Soil</p>
+      <h1 class="stage">A book inside a book.</h1>
+      <p class="lede">Cicada hid meaning in published text: line and word, sometimes page and word. The volume is local. The coordinates are kind.</p>
+      <p class="note"><a href="/library/soil-journal.txt">/library/soil-journal.txt</a> &nbsp; Format is <span class="mono">line:word</span>, 1-based.</p>
+      <div class="coords" id="coords"></div>
+      <form id="gate">
+        <label class="field" for="guess">Three words, in order</label>
+        <input id="guess" name="guess" type="text" autocomplete="off" spellcheck="false" required>
+        <div class="row"><button type="submit">Molt</button></div>
+      </form>
+      <p class="note" id="status"></p>
+      <article class="brief" id="brief" hidden>
+        <h2>Tradecraft</h2>
+        <p>A book cipher does not invent entropy. It borrows a shared volume so the ciphertext is only coordinates. Cicada pointed at King James verses, poems, and later Liber Primus itself. Always fetch the file. Never trust a summary of a book you have not opened.</p>
+        <p>The three words are an instruction for the next chamber.</p>
+        <p><a href="/workbench/#book">Open the book bench</a></p>
+      </article>
+    </section>
+    <aside class="relic">
+      <img src="/media/hero-soil.jpg" alt="A wing buried in soil.">
+      <figcaption>The journal is shorter than Walden. On purpose.</figcaption>
+    </aside>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/puzzle.js"></script>
+  <script src="/js/core.js"></script>
+  <script>
+    INSTAR.mountChrome("soil");
+    INSTAR.mountFoot();
+    document.getElementById("coords").innerHTML = (INSTAR_PUZZLE.bookCoords || [])
+      .map(function (c) { return "<code>" + c + "</code>"; }).join("");
+    INSTAR.bindGate({
+      form: "gate",
+      input: "guess",
+      status: "status",
+      brief: "brief",
+      hash: "soil",
+      stage: "soil",
+      next: "/tunnel/",
+      okText: "Dig the last row."
+    });
+  </script>
+</body>
+</html>

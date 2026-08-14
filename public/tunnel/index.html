@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tunnel - INSTAR</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+</head>
+<body>
+  <header class="top" id="top"></header>
+  <main class="wrap chamber">
+    <section>
+      <p class="kicker">Instar III · Tunnel</p>
+      <h1 class="stage">The least bit is a trench.</h1>
+      <p class="lede">Cicada hid payloads with OutGuess and with simpler LSB. We do not ship OutGuess. We ship the habit: take the last bit of each red sample, stop at a null, read UTF-8. The workbench will do it. So will a script of your own.</p>
+      <p class="note">Specimen: <a href="/media/wing.png">/media/wing.png</a>. Also try a strings pass. Files sometimes carry a tail after their declared end. The <a href="/workbench/#stego">LSB bench</a> will paint a bit-plane if you want to see the trench.</p>
+      <form id="lsb">
+        <label class="field" for="file">Drop the wing, or any PNG</label>
+        <input id="file" type="file" accept="image/png,image/jpeg">
+        <div class="row">
+          <button type="submit">Extract LSB</button>
+          <button type="button" id="str">Strings</button>
+        </div>
+      </form>
+      <pre class="cipher" id="out" style="letter-spacing:0; white-space:pre-wrap; min-height:8rem;"></pre>
+      <p class="note" id="status"></p>
+    </section>
+    <aside class="relic">
+      <img src="/media/wing.png" alt="Macro of a cicada wing.">
+      <figcaption>Looks empty. That is the point.</figcaption>
+    </aside>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/puzzle.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/stego.js"></script>
+  <script>
+    INSTAR.mountChrome("tunnel");
+    INSTAR.mountFoot();
+    INSTAR.mark("soil");
+    const out = document.getElementById("out");
+    const status = document.getElementById("status");
+    document.getElementById("lsb").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const f = document.getElementById("file").files[0];
+      if (!f) { status.textContent = "Choose the wing."; return; }
+      try {
+        const text = await INSTAR_STEGO.lsbExtract(f);
+        out.textContent = text || "(no null-terminated UTF-8 in red LSB)";
+        if (/\/song\//.test(text)) {
+          INSTAR.mark("tunnel");
+          status.className = "note ok";
+          status.textContent = "The song is a picture. Follow the path.";
+        }
+      } catch (err) {
+        status.className = "note bad";
+        status.textContent = String(err.message || err);
+      }
+    });
+    document.getElementById("str").addEventListener("click", async function () {
+      const f = document.getElementById("file").files[0];
+      if (!f) { status.textContent = "Choose the wing."; return; }
+      const found = await INSTAR_STEGO.stringsDump(f, 8);
+      out.textContent = found.join("\n");
+    });
+  </script>
+</body>
+</html>

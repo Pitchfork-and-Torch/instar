@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prime - INSTAR</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+</head>
+<body>
+  <header class="top" id="top"></header>
+  <main class="wrap chamber">
+    <section>
+      <p class="kicker">Instar V · Prime</p>
+      <h1 class="stage">Two primes, then a door.</h1>
+      <p class="lede">Cicada used large primes and RSA as a handshake: anyone can encrypt to a public n and e; only the holder of d can read. Here the primes are classroom-sized so you can factor them by hand or with the workbench. The plaintext letters are ASCII code points.</p>
+      <div class="cipher" id="rsa" style="letter-spacing:0.08em;"></div>
+      <p class="note">phi = (p-1)(q-1). d is the inverse of e mod phi. m = c^d mod n.</p>
+      <form id="gate">
+        <label class="field" for="guess">Five letters</label>
+        <input id="guess" name="guess" type="text" autocomplete="off" spellcheck="false" required>
+        <div class="row"><button type="submit">Molt</button></div>
+      </form>
+      <p class="note" id="status"></p>
+      <article class="brief" id="brief" hidden>
+        <h2>Tradecraft</h2>
+        <p>Real RSA is 2048+ bits. Factoring this n is a lesson, not a break. Cicada also asked people to multiply large primes as proof of work. 3301 itself is prime. That was a calling card, not a cipher.</p>
+      </article>
+    </section>
+    <aside>
+      <p class="note">The <a href="/workbench/#rsa">RSA bench</a> will factor, invert, and decrypt if you do not want to do the arithmetic in a notebook. It also forges a classroom pair so you can see n and d born.</p>
+    </aside>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/puzzle.js"></script>
+  <script src="/js/core.js"></script>
+  <script>
+    INSTAR.mountChrome("prime");
+    INSTAR.mountFoot();
+    var r = INSTAR_PUZZLE.rsa;
+    document.getElementById("rsa").textContent = "n = " + r.n + "\ne = " + r.e + "\nc = [" + r.c.join(", ") + "]";
+    INSTAR.bindGate({
+      form: "gate",
+      input: "guess",
+      status: "status",
+      brief: "brief",
+      hash: "prime",
+      stage: "prime",
+      next: "/liber/",
+      okText: "The book of runes opens."
+    });
+  </script>
+</body>
+</html>
