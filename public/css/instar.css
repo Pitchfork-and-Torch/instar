@@ -1,4 +1,4 @@
-/* INSTAR - periodical amber. ASCII only. v1.1.0 */
+/* INSTAR - periodical amber. ASCII only. v1.1.1 */
 :root {
   --bg: #080705;
   --bg-2: #100e0b;
@@ -272,6 +272,24 @@ h1.stage {
   overflow-x: auto;
   margin: 22px 0;
 }
+.cipher.lab {
+  font-size: 0.82rem;
+  letter-spacing: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--ink);
+}
+.rules {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+}
+.rules li {
+  border-top: 1px solid var(--line);
+  padding: 12px 0;
+  color: var(--mute);
+}
+.rules strong { color: var(--accent); }
 .coords {
   display: flex;
   flex-wrap: wrap;

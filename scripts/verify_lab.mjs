@@ -52,7 +52,14 @@ ok("rsa-steps", proof.includes("p =") && proof.includes("phi"));
 
 await page.goto(base + "/manual/", { waitUntil: "domcontentloaded" });
 ok("manual", (await page.locator("h1.stage").innerText()).includes("Field"));
-ok("locked-or-open", (await page.locator("article").count()) === 8);
+ok("locked-or-open", (await page.locator("article").count()) === 9);
+
+await page.goto(base + "/husk/", { waitUntil: "domcontentloaded" });
+ok("husk", (await page.locator("h1.stage").innerText()).toLowerCase().includes("payload"));
+await page.click("#run");
+const huskOut = await page.locator("#out").innerText();
+ok("husk-onion", huskOut.includes("gy3hoy2zizvuzvdb"));
+ok("husk-dead", huskOut.toLowerCase().includes("dead"));
 
 await page.goto(base + "/song/", { waitUntil: "domcontentloaded" });
 ok("song-fft", await page.locator("#nfft").count() === 1);

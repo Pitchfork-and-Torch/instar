@@ -16,6 +16,7 @@ Live: https://instar.jonbailey.xyz/
 - Classroom RSA (factor, invert, decrypt)
 - Futhorc sound values (not Liber Primus gematria)
 - A signed-statement / onion primer in the field manual
+- Page 56 as a payload reading (ruled-out paths, no preimage search)
 
 ## Play
 
@@ -36,6 +37,14 @@ Rebuild puzzle payloads (spoilers live in the encoder):
 ```
 py -3 scripts/build_payloads.py
 ```
+
+Page 56 lab (public hex, no preimage search):
+
+```
+python3 scripts/page56_lab.py
+```
+
+Field lesson: `/husk/`
 
 ## Deploy
 

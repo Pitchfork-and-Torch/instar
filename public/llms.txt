@@ -2,7 +2,7 @@
 
 > A school for the cryptography Cicada 3301 actually used. Original puzzle. Not affiliated.
 
-- Version: 1.1.0
+- Version: 1.1.1
 - Live: https://instar.jonbailey.xyz/
 - Workbench: https://instar.jonbailey.xyz/workbench/
 - Manual: https://instar.jonbailey.xyz/manual/
@@ -15,7 +15,7 @@ The workbench is an open laboratory (live ciphers, frequency, bit-planes, STFT c
 
 ## What it is not
 
-Not Cicada 3301. Not a hidden service. Not a request for personal data. Liber Primus pages remain unsolved here.
+Not Cicada 3301. Not a hidden service. Not a request for personal data. Liber Primus pages remain unsolved here. Page 56 is taught as a payload reading at /husk/, not as a preimage search.
 
 ## License
 

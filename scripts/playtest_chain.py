@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -87,13 +88,28 @@ def main() -> None:
         "liber/index.html",
         "emerge/index.html",
         "brood/index.html",
+        "husk/index.html",
         "workbench/index.html",
         "manual/index.html",
+        "js/page56.js",
         "og.jpg",
         "llms.txt",
     ]:
         if not (PUB / p).exists():
             fail("missing " + p)
+
+    lab = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "page56_lab.py")],
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+    )
+    if lab.returncode != 0 or "PAGE56 OK" not in lab.stdout:
+        fail("page56 lab")
+    if "gy3hoy2zizvuzvdb" not in lab.stdout:
+        fail("page56 onion")
+    if "SHA3-512" not in lab.stdout:
+        fail("page56 sha3 note")
 
     print("PLAYTEST OK")
     if "--show" in sys.argv:
