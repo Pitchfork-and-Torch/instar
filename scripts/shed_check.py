@@ -5,12 +5,12 @@
 # gate. CI can run this without the secret journal. It does not invert
 # a digest, fetch a hidden service, or name a molt answer. It fails
 # when the public school is about to drift:
-#   - cook_guard, page56 lab, or unit lab no longer hold
+#   - cook_guard, page56 lab, unit lab, or Ensure-TweetCard no longer hold
 #   - browser and CLI page-56 labs disagree
 #   - a required public file is missing
 #   - a new magnet / IPFS / Freenet / I2P locator appears
 #   - public HTML/JS/CSS picks up fancy dashes or smart quotes
-#   - a hits snippet loses slug instar, or the hello tweet card drops
+#   - a hits snippet loses slug instar, or the hello tweet card drifts
 #   - README or AGENTS.md claims a Liber Primus / Cicada break
 from __future__ import annotations
 
@@ -188,12 +188,6 @@ def scan_tree() -> list[str]:
         if not re.fullmatch(r"[a-f0-9]{64}", str(got)):
             fails.append("public/js/puzzle.js missing hashed gate " + name)
 
-    hello = PUB / "index.html"
-    if hello.is_file():
-        body = hello.read_text(encoding="utf-8")
-        if 'name="twitter:card"' not in body or "summary_large_image" not in body:
-            fails.append("public/index.html is missing the tweet card")
-
     for path in guard.tracked_paths():
         if not path.is_file() or not guard.is_text(path):
             continue
@@ -266,6 +260,9 @@ def main() -> int:
     fails = run_tool([sys.executable, str(SCRIPTS / "cook_guard.py")], "COOK GUARD OK")
     fails += run_tool([sys.executable, str(SCRIPTS / "page56_lab.py")], "PAGE56 OK")
     fails += run_tool(["node", str(SCRIPTS / "unit_lab.js")], "UNIT OK")
+    fails += run_tool(
+        [sys.executable, str(SCRIPTS / "ensure_tweet_card.py")], "TWEET CARD OK"
+    )
     fails += scan_tree()
     if fails:
         print("SHED CHECK FAIL", file=sys.stderr)
@@ -273,8 +270,8 @@ def main() -> int:
             print("  " + item, file=sys.stderr)
         return 1
     print("SHED CHECK OK")
-    print("public school holds: cook guard, page56 lab, unit lab, lab parity,")
-    print("required files, no new locator, house rails, no solve claim in docs.")
+    print("public school holds: cook guard, page56 lab, unit lab, tweet card,")
+    print("lab parity, required files, no new locator, house rails, no solve claim.")
     print("This is not a decipherment. The secret journal was not opened.")
     return 0
 
