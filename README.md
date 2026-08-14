@@ -60,7 +60,7 @@ Shed check (public-safe school gate, no secret journal). Run before a chamber or
 python3 scripts/shed_check.py
 ```
 
-The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, and the PWA precache check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, and the Pages headers check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
 
 Ensure-TweetCard (after a visual or copy change; does not bump `?v=`):
 
@@ -77,6 +77,14 @@ python3 scripts/precache_check.py
 ```
 
 The precache check fails if `KILL` is true, a listed path is missing on disk, or a public chamber is missing from `PRECACHE`. It does not fetch and does not name a molt answer.
+
+Pages headers (after editing `public/_headers`):
+
+```
+python3 scripts/headers_check.py
+```
+
+The headers check fails if `/*` drops nosniff, a safe referrer policy, or CSP `default-src`, if any path opens CORS with `*`, or if `/sw.js` is not must-revalidate.
 
 ## Deploy
 
