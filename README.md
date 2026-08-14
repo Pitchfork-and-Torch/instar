@@ -46,13 +46,21 @@ python3 scripts/page56_lab.py
 
 Field lesson: `/husk/`
 
-Page cook guard (no spoilers, no decipherment). Run before a new chamber or lab PR:
+Page cook guard (no spoilers, no decipherment):
 
 ```
 python3 scripts/cook_guard.py
 ```
 
 The guard fails if a cook is about to commit the secret manifest, a new onion host, a credential shape, or a Liber Primus solve claim. The published dead page-56 v2 host stays allowlisted as a teaching artifact. Do not add a live hidden service. Do not claim a Cicada break.
+
+Shed check (public-safe school gate, no secret journal). Run before a chamber or lab PR. CI runs the same command:
+
+```
+python3 scripts/shed_check.py
+```
+
+The shed check runs the cook guard, the page 56 lab, and the unit lab, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
 
 ## Deploy
 
