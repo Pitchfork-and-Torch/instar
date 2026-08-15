@@ -20,7 +20,7 @@ After visual or hello copy: bump `og.jpg?v=`, then `python3 scripts/ensure_tweet
 
 After a new chamber: add it to `public/sw.js` `PRECACHE`, bump `CACHE`, keep `noindex`, then `python3 scripts/precache_check.py` and `python3 scripts/listing_check.py`.
 
-After `public/_headers`: `python3 scripts/headers_check.py`.
+After `public/_headers`: `python3 scripts/headers_check.py` and `python3 scripts/fresh_check.py`.
 
 After `public/_redirects` or `public/404.html`: `python3 scripts/door_check.py`.
 

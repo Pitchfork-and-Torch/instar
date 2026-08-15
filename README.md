@@ -60,7 +60,7 @@ Shed check (public-safe school gate, no secret journal). Run before a chamber or
 python3 scripts/shed_check.py
 ```
 
-The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, the cook map, the PWA manifest check, the EN-only check, the canonical-host check, the llms.txt check, and the seal/icon check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, the cook map, the PWA manifest check, the EN-only check, the canonical-host check, the llms.txt check, the seal/icon check, and the cache-freshness check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
 
 Page-cook map (when to run which gate):
 
@@ -93,6 +93,14 @@ python3 scripts/headers_check.py
 ```
 
 The headers check fails if `/*` drops nosniff, a safe referrer policy, or CSP `default-src`, if any path opens CORS with `*`, or if `/sw.js` is not must-revalidate.
+
+Cache freshness (after editing `public/_headers`):
+
+```
+python3 scripts/fresh_check.py
+```
+
+The freshness check fails if `/llms.txt`, `/sitemap.xml`, or `/sw.js` is not must-revalidate, or if `/manifest.webmanifest` is sticky or missing `Content-Type: application/manifest+json`. It does not deploy and does not name a molt answer.
 
 Search listing (after a new chamber or a robots/sitemap edit):
 
