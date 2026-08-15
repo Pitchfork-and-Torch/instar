@@ -5,7 +5,7 @@
 # gate. CI can run this without the secret journal. It does not invert
 # a digest, fetch a hidden service, or name a molt answer. It fails
 # when the public school is about to drift:
-#   - cook_guard, page56 lab, unit lab, tweet card, precache, headers, listing, page-lab contract, door, cook map, manifest, EN-only, canonical, llms, or icon no longer hold
+#   - cook_guard, page56 lab, unit lab, tweet card, precache, headers, listing, page-lab contract, door, cook map, manifest, EN-only, canonical, llms, icon, or fresh no longer hold
 #   - browser and CLI page-56 labs disagree
 #   - a required public file is missing
 #   - a new magnet / IPFS / Freenet / I2P locator appears
@@ -296,6 +296,9 @@ def main() -> int:
     fails += run_tool(
         [sys.executable, str(SCRIPTS / "icon_check.py")], "ICON OK"
     )
+    fails += run_tool(
+        [sys.executable, str(SCRIPTS / "fresh_check.py")], "FRESH OK"
+    )
     fails += scan_tree()
     if fails:
         print("SHED CHECK FAIL", file=sys.stderr)
@@ -303,7 +306,7 @@ def main() -> int:
             print("  " + item, file=sys.stderr)
         return 1
     print("SHED CHECK OK")
-    print("public school holds: cook guard, page56 lab, unit lab, tweet card, precache, headers, listing, page-lab contract, door, cook map, manifest, EN, canon, llms, icon,")
+    print("public school holds: cook guard, page56 lab, unit lab, tweet card, precache, headers, listing, page-lab contract, door, cook map, manifest, EN, canon, llms, icon, fresh,")
     print("lab parity, required files, no new locator, house rails, no solve claim.")
     print("This is not a decipherment. The secret journal was not opened.")
     return 0
