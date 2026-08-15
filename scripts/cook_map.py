@@ -32,6 +32,7 @@ GATES = (
     "llms_check.py",
     "icon_check.py",
     "fresh_check.py",
+    "hits_check.py",
     "deploy.ps1",
 )
 
