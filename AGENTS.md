@@ -4,7 +4,7 @@
 - Product is a puzzle school. Do not paste plaintext answers into `public/`.
 - `scripts/_secret_manifest.json` is local spoilers. Do not commit.
 - EN only (i18n pause). ASCII dashes in public copy. After a new HTML page: `python3 scripts/en_check.py`.
-- After visual/copy change: OG `?v=` bump, `python3 scripts/ensure_tweet_card.py`, hits slug `instar`. After `public/llms.txt`: `python3 scripts/llms_check.py`.
+- After visual/copy change: OG `?v=` bump, `python3 scripts/ensure_tweet_card.py`, hits slug `instar` (`python3 scripts/hits_check.py`). After `public/llms.txt`: `python3 scripts/llms_check.py`.
 - Public GitHub: MIT, one commit, Pitchfork-and-Torch author, secret scan first.
 - Page-cook map: `scripts/COOK.md`. Before a page or lab PR: `python3 scripts/shed_check.py`.
 - New `scripts/page*_lab.py`: local only, `PAGE<n> OK`, no preimage hunt, `python3 scripts/page_lab_contract.py`.

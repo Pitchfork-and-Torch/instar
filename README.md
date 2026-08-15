@@ -60,7 +60,7 @@ Shed check (public-safe school gate, no secret journal). Run before a chamber or
 python3 scripts/shed_check.py
 ```
 
-The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, the cook map, the PWA manifest check, the EN-only check, the canonical-host check, the llms.txt check, the seal/icon check, and the cache-freshness check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
+The shed check runs the cook guard, the page 56 lab, the unit lab, Ensure-TweetCard, the PWA precache check, the Pages headers check, the search-listing check, the page-lab contract, the 404/redirects door check, the cook map, the PWA manifest check, the EN-only check, the canonical-host check, the llms.txt check, the seal/icon check, the cache-freshness check, and the hits-slug check, then confirms the browser and CLI labs still agree, required public files are present, no new magnet / IPFS / Freenet / I2P locator landed, public copy stayed ASCII, the hello tweet card and hits slug `instar` still hold, and README / AGENTS.md do not claim a break. It does not open `scripts/_secret_manifest.json`. It is not a decipherment.
 
 Page-cook map (when to run which gate):
 
@@ -77,6 +77,14 @@ python3 scripts/ensure_tweet_card.py
 ```
 
 The card check fails if `public/og.jpg` is missing, `og:image` / `twitter:image` / JSON-LD disagree on `?v=`, `llms.txt` Version drifted, or the hello hits slug is not `instar`. Cooks still bump `?v=` on purpose when the picture or hello copy changes.
+
+Hits slug (after a public-door or hits-snippet edit):
+
+```
+python3 scripts/hits_check.py
+```
+
+The hits check fails if hello, workbench, or the field manual lost `data-site="instar"`, or if any public HTML page has the hits script without that slug. It does not fetch and does not name a molt answer.
 
 PWA precache (after a new chamber; bump `CACHE` in `public/sw.js`):
 
