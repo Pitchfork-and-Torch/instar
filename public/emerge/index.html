@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emerge - INSTAR</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+</head>
+<body>
+  <header class="top" id="top"></header>
+  <main class="wrap chamber">
+    <section>
+      <p class="kicker">Instar VII · Emergence</p>
+      <h1 class="stage">We do not want a name.</h1>
+      <p class="lede">Cicada ended recruitment with signed PGP statements and onion addresses. This chamber asks for a sentence you already built. Then it tells the truth: this is a school. There is no handler. There is a manual.</p>
+      <form id="gate">
+        <label class="field" for="guess">Three words. You have already met each of them.</label>
+        <input id="guess" name="guess" type="text" autocomplete="off" spellcheck="false" required placeholder="the ? emerges">
+        <div class="row"><button type="submit">Emerge</button></div>
+      </form>
+      <p class="note" id="status"></p>
+      <article class="brief" id="brief" hidden>
+        <h2>You molted.</h2>
+        <p>The field manual is open. Read it. Then, if you still want a door that was never linked, remember the wing had a tail.</p>
+        <p><a class="btn" href="/manual/">Open the field manual</a></p>
+        <p><a href="/workbench/">The benches stay open.</a></p>
+      </article>
+    </section>
+    <aside class="relic">
+      <img src="/media/hero-soil.jpg" alt="Emergence light on a buried wing.">
+      <figcaption>Onions and PGP are in the manual, not in a fake recruiter chat.</figcaption>
+    </aside>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/puzzle.js"></script>
+  <script src="/js/core.js"></script>
+  <script>
+    INSTAR.mountChrome("emerge");
+    INSTAR.mountFoot();
+    INSTAR.bindGate({
+      form: "gate",
+      input: "guess",
+      status: "status",
+      brief: "brief",
+      hash: "final",
+      stage: "emerge",
+      okText: "Welcome to the surface."
+    });
+  </script>
+</body>
+</html>
