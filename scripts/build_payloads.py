@@ -252,7 +252,7 @@ def write_hashes(journal: dict, rsa: dict) -> dict:
     hashes = {k: sha_norm(v) for k, v in answers.items()}
     JS.mkdir(parents=True, exist_ok=True)
     payload = {
-        "v": "1.0.0",
+        "v": "1.1.2",
         "hashes": hashes,
         "vigenereCipher": vigenere("PERIODICAL", "TIBERIVSCLAVDIVSCAESAR"),
         "vigenereHint": "TIBERIVS CLAVDIVS CAESAR",

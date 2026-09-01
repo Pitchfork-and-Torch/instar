@@ -2,7 +2,7 @@
 
 A school for the cryptography [Cicada 3301](https://en.wikipedia.org/wiki/Cicada_3301) actually used.
 
-Original seven-molt puzzle. Not affiliated. Not a recruiter. No identity collection.
+Original seven-molt puzzle. Not affiliated. Not a recruiter. No identity collection. Not a Liber Primus solve.
 
 Live: https://instar.jonbailey.xyz/
 
@@ -24,7 +24,7 @@ Open the live site. Begin at Hello. The first molt is not on the page you see.
 
 Workbench (always open): `/workbench/`
 
-v1.1 keeps the same hashed gates. The workbench is a living lab (live dual pane, frequency, bit-planes, STFT sliders, RSA steps). Depth marks molt without scores. Optional Guide names the next neighborhood, never the lock. Optional Skins shows shed depth as dots only, off by default, names stay unspoken. Optional Soil is a low tone, off by default. The school installs as a quiet PWA.
+v1.1.2 keeps the same hashed gates. The workbench is a living lab (live dual pane, frequency, bit-planes, STFT sliders, RSA steps). Depth marks molt without scores. Optional Guide names the next neighborhood, never the lock. Optional Skins shows shed depth as dots only, off by default, names stay unspoken. Optional Soil is a low tone, off by default. The school installs as a quiet PWA.
 
 ## Local
 
@@ -76,7 +76,7 @@ Ensure-TweetCard (after a visual or copy change; does not bump `?v=`):
 python3 scripts/ensure_tweet_card.py
 ```
 
-The card check fails if `public/og.jpg` is missing, `og:image` / `twitter:image` / JSON-LD disagree on `?v=`, `llms.txt` Version drifted, or the hello hits slug is not `instar`. Cooks still bump `?v=` on purpose when the picture or hello copy changes.
+The card check fails if `public/og.jpg` is missing, `og:image` / `twitter:image` / JSON-LD disagree on `?v=`, `llms.txt` Version drifted, the hello hits slug is not `instar`, a public door lost its share card, or `puzzle.js` / `sw.js` / README drifted from that version. Cooks still bump `?v=` on purpose when the picture or hello copy changes.
 
 Hits slug (after a public-door or hits-snippet edit):
 
@@ -164,7 +164,7 @@ llms.txt (after editing `public/llms.txt`):
 python3 scripts/llms_check.py
 ```
 
-The llms check fails if Version / Live / Workbench / Manual drift, a listed URL is off-host or an onion, or the not-a-hidden-service / unsolved banner is gone. It does not fetch and does not name a molt answer.
+The llms check fails if Version / Live / Workbench / Manual drift, a listed URL is off-host or an onion, or the not-a-hidden-service / unsolved / not-a-solve banner is gone. It does not fetch and does not name a molt answer.
 
 Seal / icon (after a favicon or install-chrome edit):
 

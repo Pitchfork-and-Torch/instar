@@ -11,6 +11,8 @@ function ok(name, cond) {
 await page.goto(base + "/", { waitUntil: "domcontentloaded" });
 ok("hello-h1", (await page.locator("h1").innerText()) === "Hello.");
 ok("hello-whisper", (await page.locator(".whisper").innerText()).toLowerCase().includes("soil"));
+ok("hello-disclaimer", (await page.locator(".disclaimer").innerText()).toLowerCase().includes("not a liber primus solve"));
+ok("foot-not-a-solve", (await page.locator(".foot").innerText()).toLowerCase().includes("not a liber primus solve"));
 ok("hello-rail-hidden", await page.locator(".molt-rail").count() === 0 || !(await page.locator(".molt-rail").isVisible()));
 ok("skins-off", (await page.locator("#skins-btn").getAttribute("aria-pressed")) === "false");
 

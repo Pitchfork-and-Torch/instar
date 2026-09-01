@@ -1,4 +1,4 @@
-/* INSTAR - periodical amber. ASCII only. v1.1.1 */
+/* INSTAR - periodical amber. ASCII only. v1.1.2 */
 :root {
   --bg: #080705;
   --bg-2: #100e0b;
@@ -225,6 +225,14 @@ input:focus, textarea:focus {
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+.disclaimer {
+  margin: 1.1rem auto 0;
+  max-width: 22rem;
+  color: var(--mute);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  line-height: 1.45;
 }
 
 .wrap {

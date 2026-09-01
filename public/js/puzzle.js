@@ -1,5 +1,5 @@
 window.INSTAR_PUZZLE = {
-  "v": "1.1.0",
+  "v": "1.1.2",
   "hashes": {
     "nymph": "68985cdf765dfff60969dd3b7685a7732ae5b125ddeaea6755d40de916d8d61f",
     "soil": "fffb247ed2f48c5617ebfd174f97303a24ba9cf368693076a471a0245f17401b",
