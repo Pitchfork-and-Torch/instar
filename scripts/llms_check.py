@@ -7,7 +7,7 @@
 # answer. It fails when the machine-readable school card drifted:
 #   - Version / Live / Workbench / Manual lines are missing
 #   - a listed URL is off-host or an onion
-#   - the not-a-hidden-service / unsolved banner is gone
+#   - the not-a-hidden-service / unsolved / not-a-solve banner is gone
 #   - solve-claim copy appears
 from __future__ import annotations
 
@@ -61,6 +61,8 @@ def scan_llms(text: str) -> list[str]:
         fails.append("llms.txt missing the not-a-hidden-service banner")
     if "unsolved" not in low:
         fails.append("llms.txt missing the unsolved banner")
+    if "not a liber primus solve" not in low:
+        fails.append("llms.txt missing the not-a-solve banner")
     if guard.find_solve_claims(text):
         fails.append("llms.txt claims a Liber Primus break")
     extra = guard.unknown_onions(text, guard.teaching_onions())
@@ -83,6 +85,7 @@ def self_check() -> list[str]:
         "Workbench: " + HOST + "/workbench/\n"
         "Manual: " + HOST + "/manual/\n"
         "Not a hidden service. Liber Primus pages remain unsolved here.\n"
+        "Not a Liber Primus solve.\n"
     )
     if scan_llms(honest):
         fails.append("honest llms.txt flagged")
@@ -98,6 +101,8 @@ def self_check() -> list[str]:
         fails.append("onion link not flagged")
     if not scan_llms(honest.replace("unsolved", "open")):
         fails.append("missing unsolved banner not flagged")
+    if not scan_llms(honest.replace("Not a Liber Primus solve.", "")):
+        fails.append("missing not-a-solve banner not flagged")
     return fails
 
 

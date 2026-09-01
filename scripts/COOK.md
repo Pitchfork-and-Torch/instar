@@ -16,7 +16,7 @@ CI and `deploy.ps1` run the same gate. It does not open the secret journal. It i
 
 ## When you change a thing
 
-After visual or hello copy: bump `og.jpg?v=`, then `python3 scripts/ensure_tweet_card.py`. Hits slug stays `instar`: `python3 scripts/hits_check.py`. After `public/llms.txt`: `python3 scripts/llms_check.py`.
+After visual or hello copy: bump `og.jpg?v=`, then `python3 scripts/ensure_tweet_card.py`. Hits slug stays `instar`: `python3 scripts/hits_check.py`. After `public/llms.txt`: `python3 scripts/llms_check.py`. Keep hello, the footer, and llms.txt saying this is not a Liber Primus solve.
 
 After a new chamber: add it to `public/sw.js` `PRECACHE`, bump `CACHE`, keep `noindex`, then `python3 scripts/precache_check.py` and `python3 scripts/listing_check.py`.
 

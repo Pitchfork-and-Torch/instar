@@ -12,6 +12,7 @@
 #   - public HTML/JS/CSS picks up fancy dashes or smart quotes
 #   - a hits snippet loses slug instar, or the hello tweet card drifts
 #   - README or AGENTS.md claims a Liber Primus / Cicada break
+#   - the visible not-a-solve disclaimer dropped off hello or the footer
 from __future__ import annotations
 
 import json
@@ -29,6 +30,7 @@ import page56_lab as lab  # noqa: E402
 PUB = ROOT / "public"
 HOUSE_SUFFIX = {".html", ".js", ".css", ".txt", ".xml", ".webmanifest", ".md"}
 HASH_GATES = ("nymph", "soil", "song", "prime", "liber", "final")
+NOT_A_SOLVE = "not a liber primus solve"
 PUBLIC_PATHS = [
     "index.html",
     "nymph/index.html",
@@ -183,6 +185,15 @@ def scan_tree() -> list[str]:
     hashes = puzzle.get("hashes") if isinstance(puzzle.get("hashes"), dict) else {}
     if "answers" in puzzle:
         fails.append("public/js/puzzle.js dumps an answers object")
+    hello = PUB / "index.html"
+    if hello.is_file() and NOT_A_SOLVE not in hello.read_text(encoding="utf-8").lower():
+        fails.append("public/index.html lost the visible not-a-solve disclaimer")
+    core = PUB / "js" / "core.js"
+    if core.is_file() and NOT_A_SOLVE not in core.read_text(encoding="utf-8").lower():
+        fails.append("public/js/core.js footer lost the not-a-solve disclaimer")
+    llms = PUB / "llms.txt"
+    if llms.is_file() and NOT_A_SOLVE not in llms.read_text(encoding="utf-8").lower():
+        fails.append("public/llms.txt lost the not-a-solve banner")
     for name in HASH_GATES:
         got = hashes.get(name, "")
         if not re.fullmatch(r"[a-f0-9]{64}", str(got)):

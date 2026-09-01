@@ -1,8 +1,8 @@
 # INSTAR
 
-> A school for the cryptography Cicada 3301 actually used. Original puzzle. Not affiliated.
+> A school for the cryptography Cicada 3301 actually used. Original puzzle. Not a Liber Primus solve. Not affiliated.
 
-- Version: 1.1.1
+- Version: 1.1.2
 - Live: https://instar.jonbailey.xyz/
 - Workbench: https://instar.jonbailey.xyz/workbench/
 - Manual: https://instar.jonbailey.xyz/manual/

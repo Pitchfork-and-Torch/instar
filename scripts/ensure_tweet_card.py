@@ -9,6 +9,8 @@
 #   - og:image / twitter:image / JSON-LD image disagree on ?v=
 #   - llms.txt version drifted from the card
 #   - hello hits snippet loses slug instar
+#   - workbench / manual share cards disagree on og.jpg?v=
+#   - puzzle.js / sw.js / README version drifted from the card
 from __future__ import annotations
 
 import json
@@ -29,6 +31,12 @@ META = re.compile(
 VER = re.compile(r"^(?:[\-\*]\s*)?Version:\s*(\S+)\s*$", re.M)
 OG_URL = re.compile(r"^https://instar\.jonbailey\.xyz/og\.jpg\?v=([0-9]+(?:\.[0-9]+)*)$")
 HITS = re.compile(r'hits\.jonbailey\.xyz/c\.js[^>]*data-site="instar"')
+PUZZLE_V = re.compile(r'"v"\s*:\s*"([^"]+)"')
+SW_CACHE = re.compile(r'CACHE\s*=\s*"instar-([^"]+)"')
+DOORS = (
+    ("/workbench/", "workbench/index.html"),
+    ("/manual/", "manual/index.html"),
+)
 
 
 def meta_map(html: str) -> dict[str, str]:
@@ -95,6 +103,59 @@ def card_fails(html: str, llms: str) -> list[str]:
     return fails
 
 
+def door_card_fails(rel: str, html: str, ver: str, want_url: str) -> list[str]:
+    fails: list[str] = []
+    tags = meta_map(html)
+    og = tags.get("og:image", "")
+    tw = tags.get("twitter:image", "")
+    og_m = OG_URL.match(og)
+    tw_m = OG_URL.match(tw)
+    if tags.get("twitter:card") != CARD:
+        fails.append(rel + " twitter:card is not " + CARD)
+    if not og_m:
+        fails.append(rel + " og:image is not " + HOST + "/" + OG_NAME + "?v=")
+    elif og_m.group(1) != ver:
+        fails.append(rel + " og.jpg?v= disagrees with hello")
+    if not tw_m:
+        fails.append(rel + " twitter:image is not " + HOST + "/" + OG_NAME + "?v=")
+    if og_m and tw_m and og != tw:
+        fails.append(rel + " og:image and twitter:image disagree")
+    if tags.get("og:url") != want_url:
+        fails.append(rel + " og:url is not " + want_url)
+    if not tags.get("og:title") or not tags.get("og:description"):
+        fails.append(rel + " missing og title or description")
+    if not tags.get("twitter:title") or not tags.get("twitter:description"):
+        fails.append(rel + " missing twitter title or description")
+    return fails
+
+
+def house_version_fails(ver: str) -> list[str]:
+    fails: list[str] = []
+    if not ver:
+        return fails
+    puzzle = PUB / "js" / "puzzle.js"
+    sw = PUB / "sw.js"
+    readme = ROOT / "README.md"
+    if puzzle.is_file():
+        pv = PUZZLE_V.search(puzzle.read_text(encoding="utf-8"))
+        if not pv or pv.group(1) != ver:
+            fails.append("puzzle.js v disagrees with og.jpg?v=")
+    else:
+        fails.append("public/js/puzzle.js is missing")
+    if sw.is_file():
+        cv = SW_CACHE.search(sw.read_text(encoding="utf-8"))
+        if not cv or cv.group(1) != ver:
+            fails.append("sw.js CACHE disagrees with og.jpg?v=")
+    else:
+        fails.append("public/sw.js is missing")
+    if readme.is_file():
+        if "v" + ver not in readme.read_text(encoding="utf-8"):
+            fails.append("README.md missing v" + ver)
+    else:
+        fails.append("README.md is missing")
+    return fails
+
+
 def jpeg_ok(path: Path) -> bool:
     try:
         head = path.read_bytes()[:3]
@@ -118,12 +179,21 @@ def scan_hello() -> list[str]:
     if not llms.is_file():
         fails.append("public/llms.txt is missing")
         return fails
-    fails.extend(
-        card_fails(
-            hello.read_text(encoding="utf-8"),
-            llms.read_text(encoding="utf-8"),
+    hello_html = hello.read_text(encoding="utf-8")
+    llms_text = llms.read_text(encoding="utf-8")
+    fails.extend(card_fails(hello_html, llms_text))
+    tags = meta_map(hello_html)
+    og_m = OG_URL.match(tags.get("og:image", ""))
+    ver = og_m.group(1) if og_m else ""
+    for url, rel in DOORS:
+        path = PUB / rel
+        if not path.is_file():
+            fails.append("public/" + rel + " is missing")
+            continue
+        fails.extend(
+            door_card_fails(rel, path.read_text(encoding="utf-8"), ver, HOST + url)
         )
-    )
+    fails.extend(house_version_fails(ver))
     return fails
 
 
@@ -152,6 +222,25 @@ def self_check() -> list[str]:
     no_card = good_html.replace(CARD, "summary")
     if not card_fails(no_card, "Version: 1.1.1\n"):
         fails.append("wrong twitter:card not flagged")
+    door_html = (
+        '<meta property="og:image" content="' + HOST + "/" + OG_NAME + '?v=1.1.1">\n'
+        '<meta name="twitter:card" content="' + CARD + '">\n'
+        '<meta name="twitter:image" content="' + HOST + "/" + OG_NAME + '?v=1.1.1">\n'
+        '<meta property="og:url" content="' + HOST + '/workbench/">\n'
+        '<meta property="og:title" content="Workbench">\n'
+        '<meta property="og:description" content="lab">\n'
+        '<meta name="twitter:title" content="Workbench">\n'
+        '<meta name="twitter:description" content="lab">\n'
+    )
+    if door_card_fails("workbench/index.html", door_html, "1.1.1", HOST + "/workbench/"):
+        fails.append("honest workbench card flagged")
+    if not door_card_fails(
+        "workbench/index.html",
+        door_html.replace("?v=1.1.1", "?v=9.9.9"),
+        "1.1.1",
+        HOST + "/workbench/",
+    ):
+        fails.append("workbench version drift not flagged")
     return fails
 
 
@@ -167,7 +256,7 @@ def main() -> int:
             print("  " + item, file=sys.stderr)
         return 1
     print("TWEET CARD OK")
-    print("hello og.jpg?v= , tweet card, JSON-LD, llms.txt, and hits slug agree.")
+    print("hello og.jpg?v= , tweet card, JSON-LD, llms.txt, door cards, and house versions agree.")
     print("This is not a decipherment. No version was bumped.")
     return 0
 

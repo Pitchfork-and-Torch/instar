@@ -64,6 +64,22 @@ ok("p56-wrap4", P.first8(P.chunks(P.HEX, 32)).length === 32);
   ok("lsb-red", S.extractPlane(data, 0, 0) === "HI");
   ok("lsb-green3-miss", S.extractPlane(data, 1, 3) !== "HI");
 })();
+(function house() {
+  const pub = path.join(__dirname, "..", "public");
+  const core = fs.readFileSync(path.join(pub, "js", "core.js"), "utf8");
+  const hello = fs.readFileSync(path.join(pub, "index.html"), "utf8");
+  const llms = fs.readFileSync(path.join(pub, "llms.txt"), "utf8");
+  const puzzle = fs.readFileSync(path.join(pub, "js", "puzzle.js"), "utf8");
+  const sw = fs.readFileSync(path.join(pub, "sw.js"), "utf8");
+  const banner = /not a Liber Primus solve/i;
+  ok("foot-not-a-solve", banner.test(core));
+  ok("hello-not-a-solve", banner.test(hello));
+  ok("llms-not-a-solve", banner.test(llms));
+  const ver = (llms.match(/^[\-\*]\s*Version:\s*(\S+)\s*$/m) || [])[1];
+  ok("llms-version", !!ver);
+  ok("puzzle-version", !!ver && puzzle.indexOf('"v": "' + ver + '"') !== -1);
+  ok("sw-version", !!ver && sw.indexOf('CACHE = "instar-' + ver + '"') !== -1);
+})();
 if (fails.length) {
   console.error("FAIL", fails.join(","));
   process.exit(1);
