@@ -255,7 +255,7 @@
     const on = prefs().listen;
     const skins = !!prefs().rail;
     el.innerHTML =
-      '<span>Original work. Not Cicada 3301. A school, not a Liber Primus solve.</span>' +
+      '<span>Original work. Not Cicada 3301. A school, not a recruiter. Not a Liber Primus solve.</span>' +
       '<span class="habits">' +
       '<button type="button" id="listen-btn" aria-pressed="' +
       (on ? "true" : "false") +
