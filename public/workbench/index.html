@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workbench - INSTAR</title>
+  <meta name="description" content="Open laboratory for Atbash, Vigenere, book ciphers, LSB bit planes, spectrograms, toy RSA, and futhorc runes. Nothing here solves Liber Primus.">
+  <link rel="canonical" href="https://instar.jonbailey.xyz/workbench/">
+  <meta name="theme-color" content="#080705">
+  <meta property="og:title" content="Workbench - INSTAR">
+  <meta property="og:description" content="Open laboratory for Cicada 3301 tradecraft. Nothing here solves Liber Primus.">
+  <meta property="og:url" content="https://instar.jonbailey.xyz/workbench/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="INSTAR">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://instar.jonbailey.xyz/og.jpg?v=1.1.3">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="INSTAR: a cicada wing in dark soil">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@suddenlyjon">
+  <meta name="twitter:creator" content="@suddenlyjon">
+  <meta name="twitter:title" content="Workbench - INSTAR">
+  <meta name="twitter:description" content="Open laboratory for Cicada 3301 tradecraft. Nothing here solves Liber Primus.">
+  <meta name="twitter:image" content="https://instar.jonbailey.xyz/og.jpg?v=1.1.3">
+  <meta name="twitter:image:alt" content="INSTAR: a cicada wing in dark soil">
+  <link rel="alternate" type="text/plain" href="https://instar.jonbailey.xyz/llms.txt">
+  <link rel="icon" href="/media/seal.jpg">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/media/seal.jpg">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+  <!--
+    Tools rust in the open. Nothing here is a secret service.
+    Keyboard: 1-7 tools. / focus. ? why this mattered.
+  -->
+</head>
+<body>
+  <a class="skip" href="#main">Skip to workbench</a>
+  <header class="top" id="top"></header>
+  <main class="wrap" id="main">
+    <p class="kicker">Tools</p>
+    <h1 class="stage">Workbench</h1>
+    <p class="lede">The same moves, in the open. Nothing here is a secret service. Everything here is a habit.</p>
+    <p class="kb-hint">Keys <kbd>1</kbd>-<kbd>7</kbd> change tools. <kbd>/</kbd> focuses the instrument. <kbd>?</kbd> opens why. Nothing here solves Liber Primus.</p>
+    <div class="work-grid">
+      <div class="tools" id="tabs" role="tablist" aria-label="Laboratory">
+        <button type="button" role="tab" aria-selected="true" aria-controls="classical" id="tab-classical" data-tab="classical" tabindex="0">Classical <kbd>1</kbd></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="book" id="tab-book" data-tab="book" tabindex="-1">Book <kbd>2</kbd></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="stego" id="tab-stego" data-tab="stego" tabindex="-1">LSB / strings <kbd>3</kbd></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="spec" id="tab-spec" data-tab="spec" tabindex="-1">Spectrogram <kbd>4</kbd></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="rsa" id="tab-rsa" data-tab="rsa" tabindex="-1">Toy RSA <kbd>5</kbd></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="runes" id="tab-runes" data-tab="runes" tabindex="-1">Runes <kbd>6</kbd></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="hash" id="tab-hash" data-tab="hash" tabindex="-1">Hash <kbd>7</kbd></button>
+      </div>
+      <div>
+        <section class="panel" id="classical" role="tabpanel" aria-labelledby="tab-classical">
+          <details class="why">
+            <summary>Why this mattered</summary>
+            <p>The 2012 JPEG hid a Caesar-family inversion, then a Vigenere keyed by Tiberius Claudius Caesar (U for V). Frequency analysis still works on long Caesar. It fails on a short Vigenere. That is the lesson. Atbash is reciprocal. ROT13 is Caesar 13. Feel the key before you trust the bench.</p>
+          </details>
+          <label class="field" for="c-preset">Preset</label>
+          <select class="field-ctl" id="c-preset">
+            <option value="">blank instrument</option>
+            <option value="atbash">Atbash (clutch-style line)</option>
+            <option value="rot13">ROT13 sample</option>
+            <option value="caesar">Caesar 3 sample</option>
+            <option value="vig">Vigenere LEMON (textbook)</option>
+            <option value="nymph">Chamber ciphertext (already on Nymph)</option>
+          </select>
+          <label class="field" for="c-mode">Transform</label>
+          <select class="field-ctl" id="c-mode">
+            <option value="atbash">Atbash</option>
+            <option value="rot13">ROT13</option>
+            <option value="caesar-dec">Caesar decode</option>
+            <option value="caesar-enc">Caesar encode</option>
+            <option value="vig-dec" selected>Vigenere decode</option>
+            <option value="vig-enc">Vigenere encode</option>
+            <option value="a1-from">A1Z26 to letters</option>
+            <option value="a1-to">Letters to A1Z26</option>
+          </select>
+          <label class="field" for="c-key">Key / shift</label>
+          <input id="c-key" type="text" value="TIBERIVS CLAVDIVS CAESAR" autocomplete="off" spellcheck="false">
+          <div class="duo">
+            <div>
+              <label class="field" for="c-in">Plain or cipher</label>
+              <textarea id="c-in" spellcheck="false"></textarea>
+            </div>
+            <div>
+              <p class="field">Live result</p>
+              <pre class="cipher" id="c-out"></pre>
+            </div>
+          </div>
+          <p class="field">Frequency (result)</p>
+          <div class="freq" id="c-freq" aria-hidden="true"></div>
+          <div class="freq-legend" aria-hidden="true"><span>A</span><span>Z</span></div>
+          <div class="row"><button type="button" id="c-export">Export result</button></div>
+        </section>
+
+        <section class="panel" id="book" role="tabpanel" aria-labelledby="tab-book" hidden>
+          <details class="why">
+            <summary>Why this mattered</summary>
+            <p>A book cipher borrows a shared volume so the ciphertext is only coordinates. Count from 1. Strip punctuation after you land on the word. Cicada pointed at scripture, poems, and later their own rune book. Always fetch the file. Never trust a summary of a book you have not opened.</p>
+          </details>
+          <label class="field" for="b-text">Volume</label>
+          <textarea id="b-text" placeholder="Paste a volume, or fetch the soil journal." spellcheck="false"></textarea>
+          <label class="field" for="b-co">Coordinates (line:word, 1-based)</label>
+          <input id="b-co" type="text" placeholder="7:3 11:1 13:7" autocomplete="off" spellcheck="false">
+          <div class="row">
+            <button type="button" id="b-go">Read</button>
+            <button type="button" id="b-fetch">Fetch soil journal</button>
+          </div>
+          <div class="book-lines" id="b-lines" aria-label="Numbered volume"></div>
+          <pre class="cipher" id="b-out" style="letter-spacing:0;"></pre>
+        </section>
+
+        <section class="panel" id="stego" role="tabpanel" aria-labelledby="tab-stego" hidden>
+          <details class="why">
+            <summary>Why this mattered</summary>
+            <p>OutGuess (1999) hides data in JPEG DCT coefficients with statistical cover. LSB in PNG is the classroom cousin: last bit of a channel, stop at 0x00. A bit-plane is that bit drawn as a picture. Always also run strings. A declared file format can have a tail.</p>
+          </details>
+          <div class="drop" id="s-drop" role="button" tabindex="0">Drop a PNG or JPEG, or click to choose.</div>
+          <input id="s-file" type="file" accept="image/png,image/jpeg" hidden>
+          <div class="sliders">
+            <label>Channel
+              <select class="field-ctl" id="s-ch">
+                <option value="0">Red</option>
+                <option value="1">Green</option>
+                <option value="2">Blue</option>
+              </select>
+            </label>
+            <label>Bit plane
+              <select class="field-ctl" id="s-bit">
+                <option value="0" selected>0 LSB</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7 MSB</option>
+              </select>
+            </label>
+            <label>Min string
+              <input id="s-min" type="number" value="8" min="4" max="32">
+            </label>
+          </div>
+          <canvas class="plane" id="s-plane" aria-label="Bit plane"></canvas>
+          <div class="row">
+            <button type="button" id="s-lsb">LSB extract</button>
+            <button type="button" id="s-str">Strings</button>
+          </div>
+          <pre class="cipher" id="s-out" style="letter-spacing:0; white-space:pre-wrap;"></pre>
+        </section>
+
+        <section class="panel" id="spec" role="tabpanel" aria-labelledby="tab-spec" hidden>
+          <details class="why">
+            <summary>Why this mattered</summary>
+            <p>Time on X, frequency on Y, energy as brightness. A spectrogram is a short-time Fourier transform. Cicada wrote words in the heat of a WAV. Lyrics were a decoy if they existed at all. Larger FFT: finer pitch, worse time. Smaller hop: denser columns, slower paint.</p>
+          </details>
+          <div class="drop" id="p-drop" role="button" tabindex="0">Drop audio, or click to choose.</div>
+          <input id="p-file" type="file" accept="audio/*" hidden>
+          <div class="sliders">
+            <label>FFT
+              <select class="field-ctl" id="p-nfft">
+                <option value="512">512</option>
+                <option value="1024">1024</option>
+                <option value="2048" selected>2048</option>
+                <option value="4096">4096</option>
+              </select>
+            </label>
+            <label>Hop
+              <input id="p-hop" type="number" value="512" min="64" max="2048" step="64">
+            </label>
+            <label>Gain
+              <input id="p-gain" type="number" value="80" min="20" max="200" step="10">
+            </label>
+          </div>
+          <div class="row">
+            <button type="button" id="p-go">Paint</button>
+            <button type="button" id="p-sample">Paint emergence.wav</button>
+          </div>
+          <canvas class="spec" id="p-can" aria-label="Spectrogram"></canvas>
+        </section>
+
+        <section class="panel" id="rsa" role="tabpanel" aria-labelledby="tab-rsa" hidden>
+          <details class="why">
+            <summary>Why this mattered</summary>
+            <p>n = p*q. e coprime to phi. d = e^-1 mod phi. c = m^e mod n. 3301 is prime; that was branding plus a filter. Real RSA is not factorable in a browser. This one is, so you can feel the inverse. Do not use these primes for secrets.</p>
+          </details>
+          <label class="field" for="r-n">n</label>
+          <input id="r-n" type="text" inputmode="numeric">
+          <label class="field" for="r-e">e</label>
+          <input id="r-e" type="text" value="17" inputmode="numeric">
+          <label class="field" for="r-c">ciphertext (comma separated ASCII blocks)</label>
+          <input id="r-c" type="text">
+          <div class="row"><button type="button" id="r-go">Factor and decrypt</button></div>
+          <div class="proof" id="r-proof">
+            <p class="step" data-step="n">n</p>
+            <p class="step" data-step="pq">p, q</p>
+            <p class="step" data-step="phi">phi = (p-1)(q-1)</p>
+            <p class="step" data-step="d">d = e^-1 mod phi</p>
+            <p class="step" data-step="plain">plaintext</p>
+          </div>
+          <pre class="cipher" id="r-out" style="letter-spacing:0;"></pre>
+          <p class="field">Forge a classroom pair</p>
+          <div class="duo">
+            <div>
+              <label class="field" for="r-p">p</label>
+              <input id="r-p" type="text" value="61">
+            </div>
+            <div>
+              <label class="field" for="r-q">q</label>
+              <input id="r-q" type="text" value="53">
+            </div>
+          </div>
+          <label class="field" for="r-msg">Message (short)</label>
+          <input id="r-msg" type="text" maxlength="12" placeholder="HELLO">
+          <div class="row"><button type="button" id="r-forge-go">Encrypt with p, q</button></div>
+          <pre class="cipher" id="r-forge" style="letter-spacing:0; white-space:pre-wrap;"></pre>
+        </section>
+
+        <section class="panel" id="runes" role="tabpanel" aria-labelledby="tab-runes" hidden>
+          <details class="why">
+            <summary>Why this mattered</summary>
+            <p>Liber Primus uses a custom gematria. This bench uses Anglo-Saxon futhorc sound values only. Unsolved pages stay unsolved. Do not invent a translation and call it a break. The mapper is phonetic. It is not a solution engine.</p>
+          </details>
+          <label class="field" for="u-dir">Direction</label>
+          <select class="field-ctl" id="u-dir">
+            <option value="sound">Runes to sound</option>
+            <option value="carve">Latin to runes</option>
+          </select>
+          <label class="field" for="u-in">Text</label>
+          <textarea id="u-in" spellcheck="false"></textarea>
+          <div class="row"><button type="button" id="u-go">Transliterate</button></div>
+          <pre class="cipher" id="u-out" style="letter-spacing:0;"></pre>
+        </section>
+
+        <section class="panel" id="hash" role="tabpanel" aria-labelledby="tab-hash" hidden>
+          <details class="why">
+            <summary>Why this mattered</summary>
+            <p>INSTAR stores progress as SHA-256 of a normalized guess: lowercase, letters and digits only. The hash is a lock, not a hint. You can hash here. You cannot invert here. A 512-bit dump can also be a payload: the page 56 lab at <a href="/husk/">/husk/</a> reads published bits. It does not invert SHA-512.</p>
+          </details>
+          <label class="field" for="h-in">Guess</label>
+          <input id="h-in" type="text" autocomplete="off" spellcheck="false">
+          <p class="note">Normalized form: <span id="h-norm">(empty after normalize)</span></p>
+          <div class="row"><button type="button" id="h-go">SHA-256</button></div>
+          <pre class="cipher" id="h-out" style="letter-spacing:0; word-break:break-all;"></pre>
+        </section>
+
+        <ol class="hist" id="hist" aria-label="Recent instrument output"></ol>
+      </div>
+    </div>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/puzzle.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/ciphers.js"></script>
+  <script src="/js/stego.js"></script>
+  <script src="/js/spec.js"></script>
+  <script src="/js/rsa.js"></script>
+  <script src="/js/runes.js"></script>
+  <script src="/js/workbench.js"></script>
+  <script defer src="https://hits.jonbailey.xyz/c.js" data-site="instar"></script>
+</body>
+</html>

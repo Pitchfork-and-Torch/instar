@@ -1,0 +1,22 @@
+# INSTAR
+
+> A school for the cryptography Cicada 3301 actually used. Original puzzle. Not a Liber Primus solve. Not affiliated.
+
+- Version: 1.1.3
+- Live: https://instar.jonbailey.xyz/
+- Workbench: https://instar.jonbailey.xyz/workbench/
+- Manual: https://instar.jonbailey.xyz/manual/
+
+## What it is
+
+Seven in-browser molts teaching Atbash/Vigenere, book ciphers, LSB steganography, audio spectrograms, toy RSA, and futhorc runes. Hidden files are real files. Answers are hashed. There is no recruiter.
+
+The workbench is an open laboratory (live ciphers, frequency, bit-planes, STFT controls, RSA proof steps). Progress is local. The school works offline as a PWA.
+
+## What it is not
+
+Not Cicada 3301. Not a hidden service. Not a request for personal data. Liber Primus pages remain unsolved here. Page 56 is taught as a payload reading at /husk/, not as a preimage search.
+
+## License
+
+MIT. Pitchfork and Torch.

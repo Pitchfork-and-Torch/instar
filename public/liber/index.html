@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liber - INSTAR</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/fonts/fontshare/fonts.css">
+  <link rel="stylesheet" href="/fonts/fontshare/tokens.css">
+  <link rel="stylesheet" href="/css/instar.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to liber</a>
+  <header class="top" id="top"></header>
+  <main class="wrap chamber" id="main">
+    <section>
+      <p class="kicker">Instar VI · Liber</p>
+      <h1 class="stage">Not their book. Our line.</h1>
+      <p class="lede">Liber Primus (2014) was Cicada's unsolved rune manuscript, set in a custom gematria. This line is original. The mapping is Anglo-Saxon futhorc sound values, not Gematria Primus. Honesty first: we do not pretend to have solved their pages.</p>
+      <p class="runes" id="runes">ᛖᛗᛖᚱᚷᛖ ᚹᚻᛖᚾ ᛏᚻᛖ ᛋᛖᚢᛖᚾᛏᛖᛖᚾ ᚣᛖᚪᚱ ᛋᚩᛁᛚ ᛒᚱᛖᚪᚳᛋ</p>
+      <div class="row">
+        <button type="button" id="dec">Sound the runes</button>
+      </div>
+      <p class="cipher" id="lat" style="letter-spacing:0.12em;"></p>
+      <form id="gate">
+        <label class="field" for="guess">The first word</label>
+        <input id="guess" name="guess" type="text" autocomplete="off" spellcheck="false" required>
+        <div class="row"><button type="submit">Molt</button></div>
+      </form>
+      <p class="note" id="status"></p>
+      <article class="brief" id="brief" hidden>
+        <h2>Tradecraft</h2>
+        <p>A custom gematria assigns numbers to runes so addition becomes a checksum or a second cipher. Cicada's table is public; many pages of Liber Primus are not solved. Treat unsolved pages as unsolved. The workbench decoder here is phonetic only.</p>
+        <p><a href="/workbench/#runes">Open the rune bench</a></p>
+      </article>
+    </section>
+    <aside>
+      <table class="rune-table" id="tbl"></table>
+    </aside>
+  </main>
+  <footer class="foot" id="foot"></footer>
+  <script src="/js/puzzle.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/runes.js"></script>
+  <script>
+    INSTAR.mountChrome("liber");
+    INSTAR.mountFoot();
+    var rows = Object.keys(INSTAR_RUNES.MAP).map(function (k) {
+      return "<tr><td>" + k + "</td><td>" + INSTAR_RUNES.MAP[k] + "</td></tr>";
+    }).join("");
+    document.getElementById("tbl").innerHTML = "<tr><th>Rune</th><th>Sound</th></tr>" + rows;
+    document.getElementById("dec").addEventListener("click", function () {
+      document.getElementById("lat").textContent = INSTAR_RUNES.decode(document.getElementById("runes").textContent);
+    });
+    INSTAR.bindGate({
+      form: "gate",
+      input: "guess",
+      status: "status",
+      brief: "brief",
+      hash: "liber",
+      stage: "liber",
+      next: "/emerge/",
+      okText: "Dawn."
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# Deploy public/ to Cloudflare Pages. Shed check first. No secrets in the tree.
+# Token comes from GitHub Actions secrets only. Not a decipherment.
+name: Pages deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Shed check
+        run: python3 scripts/shed_check.py
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 75c71da18eeb801b3408c812742d6590
+          command: pages deploy public --project-name=instar-jonbailey
