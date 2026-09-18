@@ -44,6 +44,16 @@
       URL.revokeObjectURL(url);
     }
   }
+  function bytesToAscii(bytes) {
+    // Chunk apply() so long printable runs cannot hit the call-arg limit.
+    const chunk = 0x8000;
+    let out = "";
+    for (let i = 0; i < bytes.length; i += chunk) {
+      const slice = bytes.length - i > chunk ? bytes.slice(i, i + chunk) : bytes.slice(i);
+      out += String.fromCharCode.apply(null, slice);
+    }
+    return out;
+  }
   async function stringsDump(file, minLen) {
     const buf = new Uint8Array(await file.arrayBuffer());
     minLen = minLen || 6;
@@ -52,11 +62,11 @@
     for (const b of buf) {
       if (b >= 32 && b < 127) cur.push(b);
       else {
-        if (cur.length >= minLen) found.push(String.fromCharCode.apply(null, cur));
+        if (cur.length >= minLen) found.push(bytesToAscii(cur));
         cur = [];
       }
     }
-    if (cur.length >= minLen) found.push(String.fromCharCode.apply(null, cur));
+    if (cur.length >= minLen) found.push(bytesToAscii(cur));
     return found;
   }
   async function drawBitPlane(file, canvas, channel, bit) {
@@ -88,5 +98,5 @@
       URL.revokeObjectURL(url);
     }
   }
-  window.INSTAR_STEGO = { lsbExtract, stringsDump, drawBitPlane, extractPlane };
+  window.INSTAR_STEGO = { lsbExtract, stringsDump, drawBitPlane, extractPlane, bytesToAscii };
 })();

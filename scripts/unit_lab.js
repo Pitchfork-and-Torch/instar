@@ -123,6 +123,14 @@ ok("p56-wrap4", P.first8(P.chunks(P.HEX, 32)).length === 32);
   I.ORDER.forEach(function (id) { I.mark(id); });
   ok("nextid-done", I.nextId() === null);
 })();
+
+(function stringsLong() {
+  const len = 70000;
+  const bytes = new Array(len).fill(65);
+  const s = S.bytesToAscii(bytes);
+  ok("strings-long", s.length === len && s.charCodeAt(0) === 65 && s.charCodeAt(len - 1) === 65);
+})();
+
 if (fails.length) {
   console.error("FAIL", fails.join(","));
   process.exit(1);
