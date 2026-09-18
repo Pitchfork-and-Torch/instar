@@ -1,0 +1,19 @@
+{
+  "name": "INSTAR",
+  "short_name": "INSTAR",
+  "description": "A school for the cryptography Cicada 3301 actually used.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080705",
+  "theme_color": "#080705",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/media/seal.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
