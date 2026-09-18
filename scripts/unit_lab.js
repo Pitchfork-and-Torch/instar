@@ -131,6 +131,14 @@ ok("p56-wrap4", P.first8(P.chunks(P.HEX, 32)).length === 32);
   ok("strings-long", s.length === len && s.charCodeAt(0) === 65 && s.charCodeAt(len - 1) === 65);
 })();
 
+(function rsaFactorFloor() {
+  ok("rsa-fac-2", A.factor(2) === null);
+  ok("rsa-fac-0", A.factor(0) === null);
+  ok("rsa-fac-3", A.factor(3) === null);
+  ok("rsa-fac-4", JSON.stringify(A.factor(4)) === "[2,2]");
+  ok("rsa-fac-nan", A.factor(NaN) === null);
+})();
+
 if (fails.length) {
   console.error("FAIL", fails.join(","));
   process.exit(1);

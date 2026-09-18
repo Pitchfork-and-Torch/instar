@@ -15,6 +15,9 @@
   }
   function factor(n) {
     n = Number(n);
+    // Classroom RSA needs two integers >= 2. Reject 0/1/2/primes-and-junk early
+    // so the workbench never prints q=1 (or q=0) from n%2===0.
+    if (!Number.isFinite(n) || !Number.isInteger(n) || n < 4) return null;
     if (n % 2 === 0) return [2, n / 2];
     const lim = Math.floor(Math.sqrt(n));
     for (let p = 3; p <= lim; p += 2) {
