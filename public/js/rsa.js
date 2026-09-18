@@ -36,6 +36,11 @@
     return Number(((x % BigInt(m)) + BigInt(m)) % BigInt(m));
   }
   function decryptBlock(c, d, n) {
+    // Classroom workbench: refuse null/non-finite d (e not coprime to phi)
+    // so BigInt(null) never throws mid-decrypt.
+    if (d == null || n == null || !Number.isFinite(Number(d)) || !Number.isFinite(Number(n))) {
+      return null;
+    }
     return modexp(c, d, n);
   }
   window.INSTAR_RSA = { modexp, factor, modinv, decryptBlock };

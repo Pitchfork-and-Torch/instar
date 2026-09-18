@@ -192,6 +192,12 @@
     const d = R.modinv(e, phi);
     step("pq", true, "p = " + fac[0] + "   q = " + fac[1]);
     step("phi", true, "phi = (p-1)(q-1) = " + phi);
+    if (d == null) {
+      step("d", true, "d = no inverse (e not coprime to phi)");
+      step("plain", false, "plaintext");
+      setText("r-out", "no modular inverse");
+      return;
+    }
     step("d", true, "d = e^-1 mod phi = " + d);
     const cs = val("r-c")
       .split(",")
