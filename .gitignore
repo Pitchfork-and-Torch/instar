@@ -1,0 +1,9 @@
+scripts/_secret_manifest.json
+__pycache__/
+.DS_Store
+Thumbs.db
+node_modules/
+.wrangler/
+
+.orbit/
+.wrangler/
