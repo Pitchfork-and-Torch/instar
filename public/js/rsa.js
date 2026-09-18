@@ -36,9 +36,21 @@
     return Number(((x % BigInt(m)) + BigInt(m)) % BigInt(m));
   }
   function decryptBlock(c, d, n) {
-    // Classroom workbench: refuse null/non-finite d (e not coprime to phi)
-    // so BigInt(null) never throws mid-decrypt.
-    if (d == null || n == null || !Number.isFinite(Number(d)) || !Number.isFinite(Number(n))) {
+    // Classroom workbench: refuse null/non-finite ciphertext or private
+    // exponent, and refuse n < 2 so BigInt(null)/mod-0 never throw mid-decrypt.
+    // (null d was already guarded; null c and zero n still threw.)
+    const cn = Number(c);
+    const dn = Number(d);
+    const nn = Number(n);
+    if (
+      c == null ||
+      d == null ||
+      n == null ||
+      !Number.isFinite(cn) ||
+      !Number.isFinite(dn) ||
+      !Number.isFinite(nn) ||
+      nn < 2
+    ) {
       return null;
     }
     return modexp(c, d, n);

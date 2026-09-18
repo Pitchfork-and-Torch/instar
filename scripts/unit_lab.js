@@ -169,6 +169,15 @@ ok("p56-wrap4", P.first8(P.chunks(P.HEX, 32)).length === 32);
   ok("rsa-fac-4", JSON.stringify(A.factor(4)) === "[2,2]");
   ok("rsa-fac-nan", A.factor(NaN) === null);
 })();
+(function rsaDecryptGuard() {
+  ok("rsa-dec-null-c", A.decryptBlock(null, 7, 143) === null);
+  ok("rsa-dec-undef-c", A.decryptBlock(undefined, 7, 143) === null);
+  ok("rsa-dec-nan-c", A.decryptBlock(NaN, 7, 143) === null);
+  ok("rsa-dec-n0", A.decryptBlock(5, 7, 0) === null);
+  ok("rsa-dec-n1", A.decryptBlock(5, 7, 1) === null);
+  ok("rsa-dec-n-neg", A.decryptBlock(5, 7, -15) === null);
+  ok("rsa-dec-ok", A.decryptBlock(A.modexp(65, 7, 143), 103, 143) === 65);
+})();
 if (fails.length) {
   console.error("FAIL", fails.join(","));
   process.exit(1);
