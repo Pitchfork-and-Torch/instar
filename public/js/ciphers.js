@@ -61,8 +61,10 @@
   }
   function book(text, coords) {
     const lines = String(text || "").split(/\r?\n/);
-    return String(coords || "")
-      .trim()
+    const tokens = String(coords || "").trim();
+    // Empty coords must not become "?" — "".split(/\s+/) is [""].
+    if (!tokens) return "";
+    return tokens
       .split(/\s+/)
       .map((tok) => {
         const m = tok.match(/^(\d+):(\d+)$/);
