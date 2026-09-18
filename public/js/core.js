@@ -72,7 +72,7 @@
   function nextId() {
     const s = load();
     for (const id of ORDER) if (!s[id]) return id;
-    return "emerge";
+    return null;
   }
   function nextHint() {
     return LISTEN[nextId()] || "";

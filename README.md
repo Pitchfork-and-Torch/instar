@@ -24,7 +24,7 @@ Open the live site. Begin at Hello. The first molt is not on the page you see.
 
 Workbench (always open): `/workbench/`
 
-v1.2.0 keeps the same hashed gates. Hello can Continue the molt if you already shed a skin. Skip-to-content and main landmarks on every molt page. The workbench is a living lab (live dual pane, frequency, bit-planes, STFT sliders, RSA steps). Depth marks molt without scores. Optional Guide names the next neighborhood, never the lock. Optional Skins shows shed depth as dots only, off by default, names stay unspoken. Optional Soil is a low tone, off by default. The school installs as a quiet PWA.
+v1.2.0 keeps the same hashed gates. Hello can Continue the molt if you already shed a skin. Skip-to-content and main landmarks on every molt page. The workbench is a living lab (live dual pane, frequency, bit-planes, STFT sliders, RSA steps). Depth marks molt without scores. Optional Guide names the next neighborhood, never the lock. Optional Skins shows shed depth as dots only, off by default, names stay unspoken. The school installs as a quiet PWA.
 
 ## Local
 

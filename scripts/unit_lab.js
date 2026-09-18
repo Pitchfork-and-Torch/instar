@@ -82,6 +82,47 @@ ok("p56-wrap4", P.first8(P.chunks(P.HEX, 32)).length === 32);
   ok("puzzle-version", !!ver && puzzle.indexOf('"v": "' + ver + '"') !== -1);
   ok("sw-version", !!ver && sw.indexOf('CACHE = "instar-' + ver + '"') !== -1);
 })();
+
+(function nextIdDone() {
+  const pub = path.join(__dirname, "..", "public");
+  const coreSrc = fs.readFileSync(path.join(pub, "js", "core.js"), "utf8");
+  const local = {
+    window: {},
+    document: {
+      readyState: "complete",
+      documentElement: { setAttribute: function () {} },
+      body: { classList: { toggle: function () {} }, setAttribute: function () {}, appendChild: function () {}, insertBefore: function () {}, querySelector: function () { return null; }, firstChild: null },
+      addEventListener: function () {},
+      querySelector: function () { return null; },
+      querySelectorAll: function () { return []; },
+      getElementById: function () { return null; },
+      createElement: function () { return { setAttribute: function () {}, appendChild: function () {}, classList: { toggle: function () {} } }; },
+    },
+    location: { hash: "", hostname: "localhost", protocol: "http:", href: "/" },
+    history: { replaceState: function () {} },
+    matchMedia: function () { return { matches: false }; },
+    localStorage: (function () {
+      const m = {};
+      return {
+        getItem: function (k) { return Object.prototype.hasOwnProperty.call(m, k) ? m[k] : null; },
+        setItem: function (k, v) { m[k] = String(v); },
+        removeItem: function (k) { delete m[k]; },
+      };
+    })(),
+    navigator: {},
+    URL: URL,
+    TextEncoder: TextEncoder,
+    Uint8Array: Uint8Array,
+  };
+  local.window = local;
+  local.document.defaultView = local;
+  vm.createContext(local);
+  vm.runInContext(coreSrc, local);
+  const I = local.window.INSTAR;
+  ok("nextid-fresh", I.nextId() === "hello");
+  I.ORDER.forEach(function (id) { I.mark(id); });
+  ok("nextid-done", I.nextId() === null);
+})();
 if (fails.length) {
   console.error("FAIL", fails.join(","));
   process.exit(1);
