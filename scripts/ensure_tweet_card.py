@@ -135,6 +135,8 @@ def door_card_fails(rel: str, html: str, ver: str, want_url: str) -> list[str]:
         fails.append(rel + " missing og title or description")
     if not tags.get("twitter:title") or not tags.get("twitter:description"):
         fails.append(rel + " missing twitter title or description")
+    if not tags.get("og:image:alt") or not tags.get("twitter:image:alt"):
+        fails.append(rel + " missing og/twitter image alt")
     return fails
 
 
@@ -244,6 +246,8 @@ def self_check() -> list[str]:
         '<meta property="og:description" content="lab">\n'
         '<meta name="twitter:title" content="Workbench">\n'
         '<meta name="twitter:description" content="lab">\n'
+        '<meta property="og:image:alt" content="wing">\n'
+        '<meta name="twitter:image:alt" content="wing">\n'
     )
     if door_card_fails("workbench/index.html", door_html, "1.1.1", HOST + "/workbench/"):
         fails.append("honest workbench card flagged")
@@ -265,6 +269,17 @@ def self_check() -> list[str]:
         HOST + "/workbench/",
     ):
         fails.append("wrong twitter:site not flagged")
+    no_alt = door_html.replace(
+        'property="og:image:alt" content="wing"',
+        'property="og:image:alt" content=""',
+    )
+    if not door_card_fails(
+        "workbench/index.html",
+        no_alt,
+        "1.1.1",
+        HOST + "/workbench/",
+    ):
+        fails.append("missing door image alt not flagged")
     return fails
 
 
