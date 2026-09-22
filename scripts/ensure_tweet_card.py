@@ -6,6 +6,7 @@
 # deploy. It only fails when the card drifted:
 #   - public/og.jpg missing or not a JPEG
 #   - twitter:card is not summary_large_image
+#   - twitter:site / twitter:creator drifted from @suddenlyjon
 #   - og:image / twitter:image / JSON-LD image disagree on ?v=
 #   - llms.txt version drifted from the card
 #   - hello hits snippet loses slug instar
@@ -70,6 +71,10 @@ def card_fails(html: str, llms: str) -> list[str]:
     tw_m = OG_URL.match(tw)
     if tags.get("twitter:card") != CARD:
         fails.append("twitter:card is not " + CARD)
+    if tags.get("twitter:site") != "@suddenlyjon":
+        fails.append("twitter:site is not @suddenlyjon")
+    if tags.get("twitter:creator") != "@suddenlyjon":
+        fails.append("twitter:creator is not @suddenlyjon")
     if not og_m:
         fails.append("og:image is not " + HOST + "/" + OG_NAME + "?v=")
     if not tw_m:
@@ -112,6 +117,10 @@ def door_card_fails(rel: str, html: str, ver: str, want_url: str) -> list[str]:
     tw_m = OG_URL.match(tw)
     if tags.get("twitter:card") != CARD:
         fails.append(rel + " twitter:card is not " + CARD)
+    if tags.get("twitter:site") != "@suddenlyjon":
+        fails.append(rel + " twitter:site is not @suddenlyjon")
+    if tags.get("twitter:creator") != "@suddenlyjon":
+        fails.append(rel + " twitter:creator is not @suddenlyjon")
     if not og_m:
         fails.append(rel + " og:image is not " + HOST + "/" + OG_NAME + "?v=")
     elif og_m.group(1) != ver:
@@ -205,6 +214,8 @@ def self_check() -> list[str]:
         '<meta property="og:image:height" content="630">\n'
         '<meta property="og:image:alt" content="wing">\n'
         '<meta name="twitter:card" content="' + CARD + '">\n'
+        '<meta name="twitter:site" content="@suddenlyjon">\n'
+        '<meta name="twitter:creator" content="@suddenlyjon">\n'
         '<meta name="twitter:image" content="' + HOST + "/" + OG_NAME + '?v=1.1.1">\n'
         '<meta name="twitter:image:alt" content="wing">\n'
         '<script type="application/ld+json">'
@@ -225,6 +236,8 @@ def self_check() -> list[str]:
     door_html = (
         '<meta property="og:image" content="' + HOST + "/" + OG_NAME + '?v=1.1.1">\n'
         '<meta name="twitter:card" content="' + CARD + '">\n'
+        '<meta name="twitter:site" content="@suddenlyjon">\n'
+        '<meta name="twitter:creator" content="@suddenlyjon">\n'
         '<meta name="twitter:image" content="' + HOST + "/" + OG_NAME + '?v=1.1.1">\n'
         '<meta property="og:url" content="' + HOST + '/workbench/">\n'
         '<meta property="og:title" content="Workbench">\n'
@@ -241,6 +254,17 @@ def self_check() -> list[str]:
         HOST + "/workbench/",
     ):
         fails.append("workbench version drift not flagged")
+    no_site = door_html.replace(
+        'name="twitter:site" content="@suddenlyjon"',
+        'name="twitter:site" content="@other"',
+    )
+    if not door_card_fails(
+        "workbench/index.html",
+        no_site,
+        "1.1.1",
+        HOST + "/workbench/",
+    ):
+        fails.append("wrong twitter:site not flagged")
     return fails
 
 
