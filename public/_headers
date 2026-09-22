@@ -32,3 +32,7 @@
 /manifest.webmanifest
   Content-Type: application/manifest+json
   Cache-Control: public, max-age=3600
+
+/VERSION
+  Cache-Control: public, max-age=300, must-revalidate
+  Content-Type: text/plain; charset=utf-8
