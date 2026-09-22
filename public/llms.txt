@@ -20,3 +20,5 @@ Not Cicada 3301. Not a hidden service. Not a request for personal data. Liber Pr
 ## License
 
 MIT. Pitchfork and Torch.
+
+Last reviewed: 2026-09-22
